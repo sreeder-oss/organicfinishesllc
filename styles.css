@@ -1125,6 +1125,175 @@ a {
 }
 
 /* ==========================================================================
+   9B. ARTISAN IN PRACTICE CINEMA SPOTLIGHT & TECHNICAL ANATOMY SPEC DECKS
+   ========================================================================== */
+.cinema-section {
+  background-color: var(--brand-plum);
+  color: var(--brand-cream);
+  padding: 5rem 0;
+  border-top: 2px solid var(--brand-leaf);
+  border-bottom: 2px solid var(--brand-leaf);
+}
+
+.cinema-section .eyebrow {
+  color: var(--brand-leaf);
+}
+
+.cinema-section .heading-lg {
+  color: var(--brand-cream-bright);
+}
+
+.cinema-section .heading-lg em {
+  color: var(--brand-leaf);
+}
+
+.cinema-section .lead {
+  color: var(--text-on-dark-muted);
+}
+
+.cinema-frame {
+  background-color: var(--brand-plum-deep);
+  border: 1.5px solid var(--brand-leaf);
+  padding: 0.85rem;
+  box-shadow: 12px 12px 0px rgba(20, 17, 23, 0.45);
+}
+
+.cinema-video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  display: block;
+  background-color: #141117;
+  object-fit: cover;
+}
+
+.cinema-caption {
+  margin-top: 0.75rem;
+  padding-top: 0.7rem;
+  border-top: var(--rule-dark);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-on-dark-muted);
+}
+
+.cinema-caption strong {
+  color: var(--brand-leaf);
+}
+
+/* Technical Anatomy & Material Science Spec Decks */
+.spec-deck-wrap {
+  margin-top: 3rem;
+  padding-top: 2.25rem;
+  border-top: var(--rule-hairline);
+}
+
+.spec-deck-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.spec-deck-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 195px), 1fr));
+  gap: 1.15rem;
+}
+
+.spec-deck-grid.deck-6 {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.spec-deck-grid.deck-5 {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+@media (max-width: 1120px) {
+  .spec-deck-grid.deck-6,
+  .spec-deck-grid.deck-5 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  .spec-deck-grid.deck-6,
+  .spec-deck-grid.deck-5 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.85rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .spec-deck-grid.deck-6,
+  .spec-deck-grid.deck-5 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.spec-deck-card {
+  background-color: var(--bg-card);
+  border: 1px solid rgba(54, 47, 61, 0.35);
+  padding: 0.65rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.spec-deck-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 6px 6px 0px rgba(54, 47, 61, 0.14);
+}
+
+.spec-deck-img-wrap {
+  position: relative;
+  aspect-ratio: 9 / 16;
+  overflow: hidden;
+  border: var(--rule-hairline);
+  background-color: var(--brand-plum);
+}
+
+.spec-deck-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: zoom-in;
+  transition: transform 0.5s ease;
+}
+
+.spec-deck-card:hover .spec-deck-img-wrap img {
+  transform: scale(1.02);
+}
+
+.spec-deck-meta {
+  padding-top: 0.65rem;
+}
+
+.spec-deck-code {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brand-sage);
+}
+
+.spec-deck-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  line-height: 1.2;
+  color: var(--text-primary);
+  margin-top: 0.15rem;
+}
+
+/* ==========================================================================
    10. CONTACT & ARCHITECTURAL DOSSIER FOOTER
    ========================================================================== */
 .contact-section {
