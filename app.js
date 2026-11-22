@@ -1,4 +1,4 @@
-// Organic Finishes LLC — Shared Interactive Logic (Nav, FAQ, Portfolio Filters, Quote Form)
+// Organic Finishes LLC — Archival Monograph & Architectural Lightbox Logic
 
 document.addEventListener('DOMContentLoaded', () => {
   // 1. Mobile Navigation Toggle
@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     menuBtn.addEventListener('click', () => {
       const isOpen = navMenu.classList.toggle('open');
       menuBtn.setAttribute('aria-expanded', String(isOpen));
-      menuBtn.textContent = isOpen ? 'Close ✕' : 'Menu ☰';
+      menuBtn.textContent = isOpen ? 'Close [×]' : 'Index [+]';
     });
   }
 
@@ -44,7 +44,59 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 4. Quote Request Form Handler (Constructs ready-to-send inquiry to contact@organicfinishesllc.org)
+  // 4. Daniel Blue Style Full-Screen Architectural Image Lightbox
+  const zoomableImages = document.querySelectorAll('.hero-img-main, .pillar-img-wrap img, .gallery-img-box img');
+  if (zoomableImages.length > 0) {
+    const backdrop = document.createElement('div');
+    backdrop.className = 'lightbox-backdrop';
+    backdrop.setAttribute('role', 'dialog');
+    backdrop.setAttribute('aria-modal', 'true');
+    backdrop.innerHTML = `
+      <button type="button" class="lightbox-close" aria-label="Close Fullscreen View">Close [ESC]</button>
+      <img class="lightbox-img" src="" alt="" />
+      <div class="lightbox-caption"></div>
+    `;
+    document.body.appendChild(backdrop);
+
+    const lbImg = backdrop.querySelector('.lightbox-img');
+    const lbCaption = backdrop.querySelector('.lightbox-caption');
+    const lbClose = backdrop.querySelector('.lightbox-close');
+
+    const closeLightbox = () => {
+      backdrop.classList.remove('open');
+    };
+
+    zoomableImages.forEach((img) => {
+      img.addEventListener('click', (e) => {
+        // Don't hijack clicks if inside an explicit anchor
+        if (img.closest('a')) return;
+        e.stopPropagation();
+        lbImg.src = img.src;
+        lbImg.alt = img.alt || '';
+        const card = img.closest('.gallery-card, .pillar-card, .hero-media');
+        let titleText = img.alt || 'Architectural Surface Plate';
+        if (card) {
+          const heading = card.querySelector('h3, strong');
+          const cat = card.querySelector('.gallery-category, .pillar-tag');
+          if (heading) {
+            titleText = (cat ? `${cat.textContent} // ` : '') + heading.textContent;
+          }
+        }
+        lbCaption.textContent = titleText;
+        backdrop.classList.add('open');
+      });
+    });
+
+    lbClose.addEventListener('click', closeLightbox);
+    backdrop.addEventListener('click', (e) => {
+      if (e.target === backdrop) closeLightbox();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  }
+
+  // 5. Quote Request Form Handler
   const quoteForm = document.getElementById('organic-quote-form');
   if (quoteForm) {
     quoteForm.addEventListener('submit', (e) => {
