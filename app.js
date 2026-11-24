@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // 4. Daniel Blue Style Full-Screen Architectural Image Lightbox (with accessible focus management)
-  const zoomableImages = document.querySelectorAll('.hero-img-main, .pillar-img-wrap img, .gallery-img-box img, .spec-deck-img-wrap img');
+  const zoomableImages = document.querySelectorAll('.hero-img-main, .pillar-img-wrap img, .gallery-img-box img, .spec-deck-img-wrap img, .cinema-card-img, .service-photo-img');
   if (zoomableImages.length > 0) {
     const backdrop = document.createElement('div');
     backdrop.className = 'lightbox-backdrop';
@@ -76,11 +76,11 @@ document.addEventListener('DOMContentLoaded', () => {
       lastFocusedTrigger = img;
       lbImg.src = img.src;
       lbImg.alt = img.alt || '';
-      const card = img.closest('.gallery-card, .pillar-card, .hero-media, .spec-deck-card');
+      const card = img.closest('.gallery-card, .pillar-card, .hero-media, .spec-deck-card, .cinema-trio-card, .service-photo-card');
       let titleText = img.alt || 'Architectural Surface Plate';
       if (card) {
-        const heading = card.querySelector('h3, strong, .spec-deck-title');
-        const cat = card.querySelector('.gallery-category, .pillar-tag, .spec-deck-code');
+        const heading = card.querySelector('h3, strong, .spec-deck-title, .cinema-card-title, .service-photo-title');
+        const cat = card.querySelector('.gallery-category, .pillar-tag, .spec-deck-code, .cinema-card-code, .service-photo-code');
         if (heading) {
           titleText = (cat ? `${cat.textContent} // ` : '') + heading.textContent;
         }
