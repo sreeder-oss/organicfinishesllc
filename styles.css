@@ -1,7 +1,7 @@
 /* ==========================================================================
    ORGANIC FINISHES LLC — BRAND PALETTE & HIGH-CONTRAST MONOGRAPH EDITION
    Developed from the Official Organic Finishes Brand Board:
-   #362f3d (Deep Plum-Charcoal) | #49a33d (Botanical Leaf) | #e8e3d6 (Limestone Cream)
+   #1a2332 (Dark Navy Blue) | #49a33d (Botanical Leaf) | #e8e3d6 (Limestone Cream)
    #46794e (Deep Forest Sage)   | #5a5a36 (Moss Olive)
    Typography: DM Serif Display + Open Sans + IBM Plex Mono
    ========================================================================== */
@@ -9,9 +9,13 @@
 
 :root {
   /* Official Organic Finishes Brand Board Palette */
-  --brand-plum: #362f3d;
-  --brand-plum-deep: #241f29;
-  --brand-plum-elevated: #41394a;
+  --brand-navy: #1a2332;
+  --brand-navy-deep: #111823;
+  --brand-navy-elevated: #232f42;
+  --brand-plum: var(--brand-navy);
+  --brand-plum-deep: var(--brand-navy-deep);
+  --brand-plum-elevated: var(--brand-navy-elevated);
+  
   --brand-leaf: #49a33d;
   --brand-cream: #e8e3d6;
   --brand-cream-bright: #f4f1ea;
@@ -23,14 +27,14 @@
   --bg-alabaster: #e8e3d6;          /* Brand board center limestone swatch */
   --bg-travertine: #dcd5c5;         /* Deeper warm mineral stone for section contrast */
   --bg-card: #f4f1ea;               /* Crisp elevated mineral card surface */
-  --bg-obsidian: #362f3d;           /* Brand board primary deep plum-charcoal */
-  --bg-obsidian-elevated: #2a2430;  /* High-contrast recessed dark card */
+  --bg-obsidian: #1a2332;           /* Brand board primary dark navy blue */
+  --bg-obsidian-elevated: #151c28;  /* High-contrast recessed dark card */
 
-  --text-primary: #241f29;          /* Deepened plum-charcoal for razor-sharp readability */
-  --text-secondary: #362f3d;        /* Primary brand plum-slate for body copy */
+  --text-primary: #111823;          /* Deepened dark navy for razor-sharp readability */
+  --text-secondary: #1a2332;        /* Primary brand dark navy for body copy */
   --text-muted: #5a5a36;            /* Brand moss olive for metadata & captions */
-  --text-on-dark: #e8e3d6;          /* Brand limestone cream on dark plum surfaces */
-  --text-on-dark-muted: #bfb8a8;    /* Warm muted stone on dark plum */
+  --text-on-dark: #e8e3d6;          /* Brand limestone cream on dark navy surfaces */
+  --text-on-dark-muted: #bfb8a8;    /* Warm muted stone on dark navy */
 
   /* Brand Botanical & Mineral Accents */
   --accent-terracotta: #46794e;       /* Brand forest sage (#46794e) */
@@ -39,9 +43,9 @@
   --accent-leaf: #49a33d;             /* Brand vibrant leaf (#49a33d) */
 
   /* High-Contrast Exposed 1px Architectural Hairline Rules */
-  --rule-hairline: 1px solid rgba(54, 47, 61, 0.24);
+  --rule-hairline: 1px solid rgba(26, 35, 50, 0.24);
   --rule-dark: 1px solid rgba(232, 227, 214, 0.18);
-  --border-sand: rgba(54, 47, 61, 0.24);
+  --border-sand: rgba(26, 35, 50, 0.24);
   --border-dark: rgba(232, 227, 214, 0.18);
 
   --radius-sm: 0px;
@@ -82,7 +86,7 @@ body {
 /* Tactile Limewash / Archival Paper Grain */
 .mineral-surface {
   background-image:
-    radial-gradient(rgba(54, 47, 61, 0.045) 1px, transparent 0),
+    radial-gradient(rgba(26, 35, 50, 0.045) 1px, transparent 0),
     radial-gradient(rgba(90, 90, 54, 0.03) 1px, transparent 0);
   background-size: 28px 28px;
   background-position: 0 0, 14px 14px;
@@ -107,7 +111,7 @@ a {
 }
 
 /* ==========================================================================
-   1. ARCHIVAL SPECIMEN METADATA BAR (Top Utility Bar — Deep Brand Plum)
+   1. ARCHIVAL SPECIMEN METADATA BAR (Top Utility Bar — Deep Brand Dark Navy)
    ========================================================================== */
 .utility-bar {
   background-color: var(--brand-plum-deep);
@@ -155,16 +159,16 @@ a {
 }
 
 /* ==========================================================================
-   2. EDITORIAL HEADER & CATALOG NAVIGATION (High-Contrast Brand Plum Header)
+   2. EDITORIAL HEADER & CATALOG NAVIGATION (High-Contrast Brand Dark Navy Header)
    ========================================================================== */
 .site-header {
   position: sticky;
   top: 0;
   z-index: 100;
-  background-color: rgba(54, 47, 61, 0.97);
+  background-color: rgba(26, 35, 50, 0.97);
   backdrop-filter: blur(12px);
   border-bottom: 2px solid var(--brand-leaf);
-  box-shadow: 0 6px 24px rgba(36, 31, 41, 0.18);
+  box-shadow: 0 6px 24px rgba(17, 24, 35, 0.18);
 }
 
 .header-inner {
@@ -435,7 +439,7 @@ a {
   border: 1.5px solid var(--brand-plum);
   padding: 0.85rem;
   background-color: var(--bg-card);
-  box-shadow: 10px 10px 0px rgba(54, 47, 61, 0.12);
+  box-shadow: 10px 10px 0px rgba(26, 35, 50, 0.12);
 }
 
 .hero-img-main {
@@ -480,7 +484,7 @@ a {
 }
 
 /* ==========================================================================
-   5. ARCHIVAL METRICS LEDGER (High-Contrast Brand Plum #362f3d Band)
+   5. ARCHIVAL METRICS LEDGER (High-Contrast Brand Dark Navy #1a2332 Band)
    ========================================================================== */
 .metrics-bar {
   background-color: var(--brand-plum);
@@ -805,10 +809,10 @@ a {
   height: auto;
   max-height: 520px;
   overflow: hidden;
-  border: 1px solid rgba(54, 47, 61, 0.35);
+  border: 1px solid rgba(26, 35, 50, 0.35);
   padding: 0.65rem;
   background-color: var(--bg-card);
-  box-shadow: 0 4px 16px rgba(36, 31, 41, 0.06);
+  box-shadow: 0 4px 16px rgba(17, 24, 35, 0.06);
 }
 
 .gallery-card.wide-plate .gallery-img-box,
@@ -1155,14 +1159,14 @@ a {
   background-color: var(--brand-plum-deep);
   border: 1.5px solid var(--brand-leaf);
   padding: 0.85rem;
-  box-shadow: 12px 12px 0px rgba(20, 17, 23, 0.45);
+  box-shadow: 12px 12px 0px rgba(17, 24, 35, 0.45);
 }
 
 .cinema-video {
   width: 100%;
   aspect-ratio: 16 / 9;
   display: block;
-  background-color: #141117;
+  background-color: #0d131a;
   object-fit: cover;
 }
 
@@ -1387,7 +1391,7 @@ a {
 
 .spec-deck-card {
   background-color: var(--bg-card);
-  border: 1px solid rgba(54, 47, 61, 0.35);
+  border: 1px solid rgba(26, 35, 50, 0.35);
   padding: 0.65rem;
   display: flex;
   flex-direction: column;
@@ -1396,7 +1400,7 @@ a {
 
 .spec-deck-card:hover {
   transform: translateY(-3px);
-  box-shadow: 6px 6px 0px rgba(54, 47, 61, 0.14);
+  box-shadow: 6px 6px 0px rgba(26, 35, 50, 0.14);
 }
 
 .spec-deck-img-wrap {
@@ -1516,7 +1520,7 @@ a {
   min-width: 0;
   max-width: 100%;
   box-sizing: border-box;
-  box-shadow: 0 12px 32px rgba(20, 17, 23, 0.35);
+  box-shadow: 0 12px 32px rgba(17, 24, 35, 0.35);
 }
 
 .quote-form-card .btn-primary {
@@ -1612,7 +1616,7 @@ select.form-control {
 .inquiry-summary-box {
   margin: 0.85rem 0;
   padding: 0.85rem;
-  background-color: rgba(20, 17, 23, 0.55);
+  background-color: rgba(17, 24, 35, 0.55);
   border: var(--rule-dark);
   font-family: var(--font-mono);
   font-size: 0.74rem;
