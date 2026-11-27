@@ -223,4 +223,203 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // 6. Clara — Studio Concierge Floating Chat Widget (Static Ontology-Backed Assistant)
+  const claraKnowledge = [
+    {
+      keywords: ['sample', 'samples', 'board', 'boards', 'color', 'colors', 'swatch', 'deposit', 'mockup'],
+      reply:
+        'Before a deposit is secured, we discuss <strong>general aggregate, texture, and movement</strong> only. Custom project sample boards matched to your specific color are fabricated and presented <strong>only after a deposit is secured</strong>.'
+    },
+    {
+      keywords: ['tile', 'over tile', 'existing tile', 'demolition', 'demo', 'rip out'],
+      reply:
+        'Yes—at just 2–3 mm thick, our microcement system bonds directly over structurally sound ceramic or porcelain tile using diamond prep, an adhesion primer, fiberglass reinforcement mesh, waterproofing, and multi-coat mineral layers.'
+    },
+    {
+      keywords: ['tadelakt', 'shower', 'wet', 'bathroom', 'curbless', 'floor', 'waterproof'],
+      reply:
+        'Both are seamless and waterproof, but differ in application: <strong>Moroccan Tadelakt</strong> is a stone-burnished hydraulic lime plaster ideal for shower walls and wet rooms. <strong>Microcement</strong> is mesh-reinforced and sealed with 2K polyurethane, making it tough enough for curbless shower floors, vanities, and countertops.'
+    },
+    {
+      keywords: ['travel', 'area', 'where', 'location', 'tulsa', 'sand springs', 'okc', 'edmond', 'state', 'country', 'nationwide'],
+      reply:
+        'We are based in <strong>Sand Springs and the Tulsa metro</strong> (with roots in Edmond/OKC) and travel <strong>nationwide across the United States</strong> for the right architectural commission (domestic travel only).'
+    },
+    {
+      keywords: ['size', 'sqft', 'square', 'feet', '1200', 'large', 'small', 'minimum', 'solo', 'crew'],
+      reply:
+        'Shawn works primarily solo and focuses on specialized, smaller-scale craft rather than high-volume square footage. As a capacity rule, we <strong>do not accept projects over 1,200 sq ft without additional crew</strong>.'
+    },
+    {
+      keywords: ['prep', 'drywall', 'level 4', 'level 5', 'tape', 'taping', 'joint', 'joints', 'substrate'],
+      reply:
+        '<strong>Level 4 drywall</strong> is the ideal baseline for most walls. However, Shawn prefers <strong>taping his own joints</strong> in showers, range hoods, and most feature walls to guarantee seam integrity.'
+    },
+    {
+      keywords: ['wood', 'cabinet', 'cabinets', 'trim', 'lacquer', 'oil', 'spray', 'paint', 'painting', 'decorative'],
+      reply:
+        'We offer selective wood and decorative painting alongside our plaster and microcement work. As a strict shop rule, <strong>we do not spray lacquer or oil-based coatings</strong>. We also apply microcement over prepped wood/MDF for vanities, hoods, and built-ins.'
+    },
+    {
+      keywords: ['brand', 'manufacturer', 'material', 'product', 'romabio', 'meoded', 'vasari', 'topciment', 'sponsor'],
+      reply:
+        'We are completely <strong>material-neutral</strong>—we select whichever lime, clay, or microcement system best fits the architecture and substrate rather than favoring a single brand.'
+    },
+    {
+      keywords: ['exterior', 'outside', 'outdoor', 'stucco', 'patio'],
+      reply:
+        'Most of our work is interior, though Shawn is open to inspecting almost any project to see if it is the right technical fit.'
+    },
+    {
+      keywords: ['clean', 'cleaning', 'maintain', 'maintenance', 'care', 'soap', 'bleach', 'seal', 'sealer'],
+      reply:
+        'Clean routinely with a gentle <strong>pH-neutral soap</strong> and a soft microfiber cloth or mop. Avoid bleach, ammonia, and abrasive powders. In showers, a quick squeegee after use helps prevent hard-water mineral buildup.'
+    },
+    {
+      keywords: ['price', 'cost', 'estimate', 'quote', 'how much', 'designer', 'designers', 'rate', 'budget'],
+      reply:
+        'We partner primarily with <strong>interior designers</strong> (alongside builders and homeowners) and price by finish system, substrate condition, and scope rather than volume square-foot rates. Call or text <a href="tel:4058160750">405-816-0750</a> or email <a href="mailto:contact@organicfinishesllc.org">contact@organicfinishesllc.org</a> for an estimate.'
+    },
+    {
+      keywords: ['contact', 'call', 'text', 'phone', 'email', 'shawn', 'book', 'schedule', 'consultation', 'hello', 'hi'],
+      reply:
+        'You can reach Shawn directly by call or text at <a href="tel:4058160750">405-816-0750</a>, email <a href="mailto:contact@organicfinishesllc.org">contact@organicfinishesllc.org</a>, or use the <a href="#contact">project inquiry form</a> on this page.'
+    }
+  ];
+
+  const claraChips = [
+    { label: 'Sample Boards', query: 'How do sample boards and colors work?' },
+    { label: 'Over Tile', query: 'Can microcement go over existing tile?' },
+    { label: 'Travel & Area', query: 'Where do you travel and work?' },
+    { label: 'Size & Prep', query: 'What is your project size limit and drywall prep?' },
+    { label: 'Pricing & Contact', query: 'How do estimates and contacting Shawn work?' }
+  ];
+
+  const matchClaraReply = (input) => {
+    const clean = input.toLowerCase().trim();
+    if (!clean) return null;
+
+    let bestMatch = null;
+    let bestScore = 0;
+
+    claraKnowledge.forEach((entry) => {
+      let score = 0;
+      entry.keywords.forEach((kw) => {
+        if (clean.includes(kw)) {
+          score += kw.includes(' ') ? 3 : 2;
+        }
+      });
+      if (score > bestScore) {
+        bestScore = score;
+        bestMatch = entry;
+      }
+    });
+
+    if (bestMatch && bestScore > 0) {
+      return bestMatch.reply;
+    }
+
+    return 'I want to make sure you get an accurate answer on that. For specific project questions, please call or text Shawn directly at <a href="tel:4058160750">405-816-0750</a>, email <a href="mailto:contact@organicfinishesllc.org">contact@organicfinishesllc.org</a>, or leave details in the <a href="#contact">inquiry form</a>.';
+  };
+
+  const launcher = document.createElement('button');
+  launcher.type = 'button';
+  launcher.id = 'clara-launcher';
+  launcher.className = 'clara-launcher';
+  launcher.setAttribute('aria-expanded', 'false');
+  launcher.setAttribute('aria-controls', 'clara-panel');
+  launcher.innerHTML = '<span class="clara-status-dot" aria-hidden="true"></span><span>Ask Clara</span>';
+
+  const panel = document.createElement('section');
+  panel.id = 'clara-panel';
+  panel.className = 'clara-panel';
+  panel.setAttribute('role', 'dialog');
+  panel.setAttribute('aria-label', 'Clara — Organic Finishes Studio Concierge');
+  panel.innerHTML = `
+    <div class="clara-header">
+      <div class="clara-title-group">
+        <div class="clara-avatar" aria-hidden="true">C</div>
+        <div>
+          <div class="clara-name">Clara</div>
+          <div class="clara-subtitle">Studio Concierge</div>
+        </div>
+      </div>
+      <button type="button" class="clara-close" aria-label="Close Clara chat">Close [×]</button>
+    </div>
+    <div class="clara-messages" id="clara-messages"></div>
+    <div class="clara-chips" id="clara-chips"></div>
+    <form class="clara-input-row" id="clara-form">
+      <input type="text" id="clara-input" class="clara-input" placeholder="Ask about finishes, prep, travel..." autocomplete="off" />
+      <button type="submit" class="clara-send">Send</button>
+    </form>
+  `;
+
+  document.body.appendChild(launcher);
+  document.body.appendChild(panel);
+
+  const messagesEl = panel.querySelector('#clara-messages');
+  const chipsEl = panel.querySelector('#clara-chips');
+  const closeBtn = panel.querySelector('.clara-close');
+  const formEl = panel.querySelector('#clara-form');
+  const inputEl = panel.querySelector('#clara-input');
+
+  const appendMessage = (html, sender) => {
+    const msg = document.createElement('div');
+    msg.className = `clara-msg ${sender === 'user' ? 'clara-msg-user' : 'clara-msg-bot'}`;
+    if (sender === 'user') {
+      msg.textContent = html;
+    } else {
+      msg.innerHTML = html;
+    }
+    messagesEl.appendChild(msg);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+  };
+
+  appendMessage(
+    'Hello — I’m <strong>Clara</strong>, the studio concierge for Organic Finishes LLC. Ask me about microcement, Tadelakt, sample boards, drywall prep, travel, or scheduling.',
+    'bot'
+  );
+
+  claraChips.forEach((chip) => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'clara-chip';
+    btn.textContent = chip.label;
+    btn.addEventListener('click', () => {
+      appendMessage(chip.query, 'user');
+      const reply = matchClaraReply(chip.query);
+      setTimeout(() => appendMessage(reply, 'bot'), 180);
+    });
+    chipsEl.appendChild(btn);
+  });
+
+  const toggleClara = (forceState) => {
+    const isOpen = typeof forceState === 'boolean' ? forceState : !panel.classList.contains('open');
+    panel.classList.toggle('open', isOpen);
+    launcher.setAttribute('aria-expanded', String(isOpen));
+    if (isOpen) {
+      inputEl.focus();
+    }
+  };
+
+  launcher.addEventListener('click', () => toggleClara());
+  closeBtn.addEventListener('click', () => toggleClara(false));
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && panel.classList.contains('open')) {
+      toggleClara(false);
+    }
+  });
+
+  formEl.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const text = inputEl.value.trim();
+    if (!text) return;
+    appendMessage(text, 'user');
+    inputEl.value = '';
+    const reply = matchClaraReply(text);
+    setTimeout(() => appendMessage(reply, 'bot'), 220);
+  });
 });
+
