@@ -1,0 +1,1577 @@
+{
+  "company": "Organic Finishes LLC",
+  "exported_at": "2026-11-27",
+  "custom_paint_match_policy": {
+    "lab_fee_usd": 150,
+    "lead_time_days": "7-10 business days",
+    "disclaimer": "Custom Paint Match Policy: Includes $150 Custom Tint Lab Fee and +7–10 business days lead time for physical mineral drawdown. Signed Sample Board Approval is required prior to ordering material; the approved physical mineral sample overrides paper paint chips."
+  },
+  "sealer_shift_rule": "Penetrating/wet-area and wax sealers (HydroWax, PlasterGuard, NanoCoat, Dura-Kote) deepen mineral tone ~10–15%.",
+  "manufacturer_palettes": [
+    {
+      "manufacturer": "Romabio",
+      "paletteName": "Romabio Core Mineral Palette",
+      "note": "Factory-formulated Italian slaked-lime mineral shades. Lime Slurry and BioMarmorino accept light-to-medium mineral bases only.",
+      "swatches": [
+        {
+          "id": "rb-bianco",
+          "manufacturer": "Romabio",
+          "code": "RB-BIANCO",
+          "name": "Bianco White",
+          "hex": "#F3F1EA",
+          "undertone": "Crisp Mineral Chalk",
+          "lrvApprox": 86,
+          "sheenBehavior": "Bright, airy reflection on flat limewash; crisp marble glow when burnished in Grassello.",
+          "tintBaseLimit": "light-to-medium",
+          "visualizerSystems": [
+            "Limewash",
+            "Venetian Marmorino",
+            "Biolime",
+            "Roman Clay",
+            "Travertino"
+          ],
+          "systemKeywords": [
+            "classico",
+            "limewash",
+            "lime slurry",
+            "venetian glaze",
+            "slaked-lime",
+            "marmorino",
+            "travertino"
+          ]
+        },
+        {
+          "id": "rb-avo",
+          "manufacturer": "Romabio",
+          "code": "RB-AVO",
+          "name": "Avorio White",
+          "hex": "#EDE6D6",
+          "undertone": "Warm Cream",
+          "lrvApprox": 80,
+          "sheenBehavior": "Soft ivory warmth; heavy aggregate (Marmorino GF) adds subtle micro-shadows that read half a shade deeper.",
+          "tintBaseLimit": "light-to-medium",
+          "visualizerSystems": [
+            "Limewash",
+            "Venetian Marmorino",
+            "Biolime",
+            "Roman Clay",
+            "Travertino"
+          ],
+          "systemKeywords": [
+            "classico",
+            "limewash",
+            "lime slurry",
+            "venetian glaze",
+            "slaked-lime",
+            "marmorino",
+            "travertino"
+          ]
+        },
+        {
+          "id": "rb-cris",
+          "manufacturer": "Romabio",
+          "code": "RB-CRIS",
+          "name": "Cristallo White",
+          "hex": "#E6E4DF",
+          "undertone": "Cool Chalk",
+          "lrvApprox": 78,
+          "sheenBehavior": "Clean architectural white with faint mineral stone undertone; resists yellowing under warm LEDs.",
+          "tintBaseLimit": "light-to-medium",
+          "visualizerSystems": [
+            "Limewash",
+            "Venetian Marmorino",
+            "Biolime",
+            "Roman Clay"
+          ],
+          "systemKeywords": [
+            "classico",
+            "limewash",
+            "lime slurry",
+            "venetian glaze",
+            "slaked-lime",
+            "marmorino"
+          ]
+        },
+        {
+          "id": "rb-rip",
+          "manufacturer": "Romabio",
+          "code": "RB-RIP",
+          "name": "Riposo Beige",
+          "hex": "#D9CEBC",
+          "undertone": "Warm Limestone",
+          "lrvApprox": 62,
+          "sheenBehavior": "Classic European limestone feel; mottling deepens naturally in troweled Marmorino and Travertino.",
+          "tintBaseLimit": "light-to-medium",
+          "visualizerSystems": [
+            "Limewash",
+            "Venetian Marmorino",
+            "Biolime",
+            "Roman Clay",
+            "Travertino"
+          ],
+          "systemKeywords": [
+            "classico",
+            "limewash",
+            "lime slurry",
+            "venetian glaze",
+            "slaked-lime",
+            "marmorino",
+            "travertino"
+          ]
+        },
+        {
+          "id": "rb-trop",
+          "manufacturer": "Romabio",
+          "code": "RB-TROP",
+          "name": "Tropea Beige",
+          "hex": "#CBBBA4",
+          "undertone": "Sun-Warmed Sand",
+          "lrvApprox": 52,
+          "sheenBehavior": "Rich Mediterranean warmth; shows pronounced clouding in Classico Limewash and velvety depth in Marmorino Satin.",
+          "tintBaseLimit": "light-to-medium",
+          "visualizerSystems": [
+            "Limewash",
+            "Venetian Marmorino",
+            "Biolime",
+            "Roman Clay",
+            "Travertino"
+          ],
+          "systemKeywords": [
+            "classico",
+            "limewash",
+            "lime slurry",
+            "venetian glaze",
+            "slaked-lime",
+            "marmorino",
+            "travertino"
+          ]
+        },
+        {
+          "id": "rb-crema",
+          "manufacturer": "Romabio",
+          "code": "RB-CREMA",
+          "name": "Crema Travertine",
+          "hex": "#E2D4BC",
+          "undertone": "Golden Stone",
+          "lrvApprox": 68,
+          "sheenBehavior": "Pairs naturally with pitted Travertino and honed Marmorino; soft golden bounce in raking daylight.",
+          "tintBaseLimit": "light-to-medium",
+          "visualizerSystems": [
+            "Venetian Marmorino",
+            "Travertino",
+            "Biolime",
+            "Roman Clay"
+          ],
+          "systemKeywords": [
+            "venetian glaze",
+            "slaked-lime",
+            "marmorino",
+            "travertino"
+          ]
+        },
+        {
+          "id": "rb-nube",
+          "manufacturer": "Romabio",
+          "code": "RB-NUBE",
+          "name": "Nube Gray",
+          "hex": "#CFCBC3",
+          "undertone": "Soft Warm Gray",
+          "lrvApprox": 59,
+          "sheenBehavior": "Balanced neutral stone gray; stays chalky and calm in flat finishes without turning icy blue.",
+          "tintBaseLimit": "light-to-medium",
+          "visualizerSystems": [
+            "Limewash",
+            "Venetian Marmorino",
+            "Biolime",
+            "Roman Clay",
+            "Travertino"
+          ],
+          "systemKeywords": [
+            "classico",
+            "limewash",
+            "lime slurry",
+            "venetian glaze",
+            "slaked-lime",
+            "marmorino",
+            "travertino"
+          ]
+        },
+        {
+          "id": "rb-flor",
+          "manufacturer": "Romabio",
+          "code": "RB-FLOR",
+          "name": "Florentine Gray",
+          "hex": "#B3ACA1",
+          "undertone": "Earthy Taupe-Gray",
+          "lrvApprox": 42,
+          "sheenBehavior": "Medium mineral depth; burnished Venetian passes highlight subtle darker veining and specular sheen.",
+          "tintBaseLimit": "light-to-medium",
+          "visualizerSystems": [
+            "Limewash",
+            "Venetian Marmorino",
+            "Biolime",
+            "Roman Clay",
+            "Travertino"
+          ],
+          "systemKeywords": [
+            "classico",
+            "limewash",
+            "lime slurry",
+            "venetian glaze",
+            "slaked-lime",
+            "marmorino",
+            "travertino"
+          ]
+        },
+        {
+          "id": "rb-citta",
+          "manufacturer": "Romabio",
+          "code": "RB-CITTA",
+          "name": "Citta Taupe",
+          "hex": "#A79B8C",
+          "undertone": "Earthy Taupe",
+          "lrvApprox": 35,
+          "sheenBehavior": "Grounded architectural taupe; aggregate plasters read slightly darker in low-light rooms.",
+          "tintBaseLimit": "light-to-medium",
+          "visualizerSystems": [
+            "Limewash",
+            "Venetian Marmorino",
+            "Biolime",
+            "Roman Clay",
+            "Travertino"
+          ],
+          "systemKeywords": [
+            "classico",
+            "limewash",
+            "lime slurry",
+            "venetian glaze",
+            "slaked-lime",
+            "marmorino",
+            "travertino"
+          ]
+        },
+        {
+          "id": "rb-sabbia",
+          "manufacturer": "Romabio",
+          "code": "RB-SABBIA",
+          "name": "Sabbia Sand",
+          "hex": "#C4B198",
+          "undertone": "Ochre Limestone",
+          "lrvApprox": 46,
+          "sheenBehavior": "Natural earthen sand tone; accentuates hand-troweled movement on range hoods and fireplace surrounds.",
+          "tintBaseLimit": "light-to-medium",
+          "visualizerSystems": [
+            "Limewash",
+            "Venetian Marmorino",
+            "Biolime",
+            "Roman Clay",
+            "Travertino"
+          ],
+          "systemKeywords": [
+            "classico",
+            "limewash",
+            "lime slurry",
+            "venetian glaze",
+            "slaked-lime",
+            "marmorino",
+            "travertino"
+          ]
+        },
+        {
+          "id": "rb-pietra",
+          "manufacturer": "Romabio",
+          "code": "RB-PIETRA",
+          "name": "Pietra Stone",
+          "hex": "#8F8A82",
+          "undertone": "Weathered Slate",
+          "lrvApprox": 26,
+          "sheenBehavior": "Deep mineral stone tone for full-spectrum plasters & glazes; dramatic tonal variation when troweled.",
+          "tintBaseLimit": "full-spectrum",
+          "visualizerSystems": [
+            "Venetian Marmorino",
+            "Biolime",
+            "Roman Clay",
+            "Travertino"
+          ],
+          "systemKeywords": [
+            "venetian glaze",
+            "slaked-lime",
+            "marmorino",
+            "travertino"
+          ]
+        },
+        {
+          "id": "rb-ardesia",
+          "manufacturer": "Romabio",
+          "code": "RB-ARDESIA",
+          "name": "Ardesia Charcoal",
+          "hex": "#595854",
+          "undertone": "Mineral Charcoal",
+          "lrvApprox": 11,
+          "sheenBehavior": "High-contrast charcoal for burnished Venetian Marmorino / Grassello; NOT available in light-to-medium Lime Slurry.",
+          "tintBaseLimit": "full-spectrum",
+          "visualizerSystems": [
+            "Venetian Marmorino"
+          ],
+          "systemKeywords": [
+            "venetian glaze",
+            "slaked-lime",
+            "marmorino"
+          ]
+        }
+      ]
+    },
+    {
+      "manufacturer": "Meoded",
+      "paletteName": "Meoded MC-Series Color Chart",
+      "note": "Shared colorant system across Stucco Veneziano, Marmorino Tintoretto, Palladino, Tonachino, Concretta FS, Golmex, Moroccan Clay & Lime Wash.",
+      "swatches": [
+        {
+          "id": "meo-mc701",
+          "manufacturer": "Meoded",
+          "code": "MC-701",
+          "name": "Natural White",
+          "hex": "#F2EFE8",
+          "undertone": "Pure Lime Putty White",
+          "lrvApprox": 85,
+          "sheenBehavior": "Clean gallery white; polishes to a mirror-bright marble glow in Stucco Veneziano and stays airy in Lime Wash.",
+          "tintBaseLimit": "light-to-medium",
+          "visualizerSystems": [
+            "Venetian Marmorino",
+            "Limewash",
+            "Tadelakt",
+            "Microcement",
+            "Roman Clay",
+            "Travertino"
+          ],
+          "systemKeywords": [
+            "concretta",
+            "marmorino",
+            "palladino",
+            "tintoretto",
+            "lime wash",
+            "golmex",
+            "stucco veneziano"
+          ]
+        },
+        {
+          "id": "meo-mc706",
+          "manufacturer": "Meoded",
+          "code": "MC-706",
+          "name": "White Dove",
+          "hex": "#ECE8DD",
+          "undertone": "Soft Warm Off-White",
+          "lrvApprox": 81,
+          "sheenBehavior": "Meoded’s top-requested warm designer white; hides sharp drywall glare while highlighting gentle trowel movement.",
+          "tintBaseLimit": "light-to-medium",
+          "visualizerSystems": [
+            "Venetian Marmorino",
+            "Limewash",
+            "Tadelakt",
+            "Microcement",
+            "Roman Clay",
+            "Travertino"
+          ],
+          "systemKeywords": [
+            "concretta",
+            "marmorino",
+            "palladino",
+            "tintoretto",
+            "lime wash",
+            "golmex",
+            "stucco veneziano"
+          ]
+        },
+        {
+          "id": "meo-mc715",
+          "manufacturer": "Meoded",
+          "code": "MC-715",
+          "name": "Calm White",
+          "hex": "#E5E1D6",
+          "undertone": "Balanced Neutral Cream",
+          "lrvApprox": 76,
+          "sheenBehavior": "Dries slightly lighter and cloudier in Lime Wash; smooth velvety limestone tone in Marmorino Tintoretto.",
+          "tintBaseLimit": "light-to-medium",
+          "visualizerSystems": [
+            "Venetian Marmorino",
+            "Limewash",
+            "Tadelakt",
+            "Roman Clay",
+            "Travertino"
+          ],
+          "systemKeywords": [
+            "concretta",
+            "marmorino",
+            "palladino",
+            "tintoretto",
+            "lime wash",
+            "stucco veneziano"
+          ]
+        },
+        {
+          "id": "meo-mc756",
+          "manufacturer": "Meoded",
+          "code": "MC-756",
+          "name": "Swiss Coffee",
+          "hex": "#E4DCCB",
+          "undertone": "Creamy Almond",
+          "lrvApprox": 73,
+          "sheenBehavior": "Rich creamy warmth ideal for range hoods and living room fireplaces; deepens 10–15% under HydroWax or PlasterGuard.",
+          "tintBaseLimit": "light-to-medium",
+          "visualizerSystems": [
+            "Venetian Marmorino",
+            "Limewash",
+            "Tadelakt",
+            "Microcement",
+            "Roman Clay",
+            "Travertino"
+          ],
+          "systemKeywords": [
+            "concretta",
+            "marmorino",
+            "palladino",
+            "tintoretto",
+            "lime wash",
+            "stucco veneziano"
+          ]
+        },
+        {
+          "id": "meo-mc749",
+          "manufacturer": "Meoded",
+          "code": "MC-749",
+          "name": "Tip-Taupe",
+          "hex": "#CDC6AD",
+          "undertone": "Pale Khaki-Taupe Greige",
+          "lrvApprox": 57,
+          "sheenBehavior": "Quiet organic greige that dries soft and mottled; bridges warm oak floors and cool stone countertops effortlessly.",
+          "tintBaseLimit": "light-to-medium",
+          "visualizerSystems": [
+            "Venetian Marmorino",
+            "Limewash",
+            "Tadelakt",
+            "Microcement",
+            "Roman Clay",
+            "Travertino"
+          ],
+          "systemKeywords": [
+            "concretta",
+            "marmorino",
+            "palladino",
+            "tintoretto",
+            "lime wash",
+            "golmex",
+            "stucco veneziano"
+          ]
+        },
+        {
+          "id": "meo-mc786",
+          "manufacturer": "Meoded",
+          "code": "MC-786",
+          "name": "Canvas",
+          "hex": "#D6CCB9",
+          "undertone": "Raw Linen Sand",
+          "lrvApprox": 61,
+          "sheenBehavior": "Natural unbleached linen character; pitted Palladino and Travertino textures add warm travertine micro-shadows.",
+          "tintBaseLimit": "light-to-medium",
+          "visualizerSystems": [
+            "Venetian Marmorino",
+            "Limewash",
+            "Tadelakt",
+            "Roman Clay",
+            "Travertino"
+          ],
+          "systemKeywords": [
+            "concretta",
+            "marmorino",
+            "palladino",
+            "tintoretto",
+            "lime wash",
+            "stucco veneziano"
+          ]
+        },
+        {
+          "id": "meo-mc753",
+          "manufacturer": "Meoded",
+          "code": "MC-753",
+          "name": "Light Coffee",
+          "hex": "#BCA992",
+          "undertone": "Warm Café Beige",
+          "lrvApprox": 43,
+          "sheenBehavior": "Earthy mid-tone warmth with pronounced light/dark compression marks when steel-troweled.",
+          "tintBaseLimit": "light-to-medium",
+          "visualizerSystems": [
+            "Venetian Marmorino",
+            "Limewash",
+            "Tadelakt",
+            "Roman Clay",
+            "Travertino"
+          ],
+          "systemKeywords": [
+            "concretta",
+            "marmorino",
+            "palladino",
+            "tintoretto",
+            "lime wash",
+            "stucco veneziano"
+          ]
+        },
+        {
+          "id": "meo-mc777",
+          "manufacturer": "Meoded",
+          "code": "MC-777",
+          "name": "Mountain Fog",
+          "hex": "#C4C5C1",
+          "undertone": "Misty Cool-Neutral Gray",
+          "lrvApprox": 55,
+          "sheenBehavior": " architectural fog gray; looks crisp and monolithic in Concretta FS showers and modern fireplaces.",
+          "tintBaseLimit": "light-to-medium",
+          "visualizerSystems": [
+            "Venetian Marmorino",
+            "Limewash",
+            "Tadelakt",
+            "Microcement",
+            "Roman Clay"
+          ],
+          "systemKeywords": [
+            "concretta",
+            "marmorino",
+            "palladino",
+            "tintoretto",
+            "lime wash",
+            "golmex",
+            "stucco veneziano"
+          ]
+        },
+        {
+          "id": "meo-mc779",
+          "manufacturer": "Meoded",
+          "code": "MC-779",
+          "name": "Stone",
+          "hex": "#AEAAA1",
+          "undertone": "Natural Limestone Gray",
+          "lrvApprox": 41,
+          "sheenBehavior": "Authentic cut-limestone neutral; hides water spotting well in Concretta FS wet areas.",
+          "tintBaseLimit": "light-to-medium",
+          "visualizerSystems": [
+            "Venetian Marmorino",
+            "Limewash",
+            "Tadelakt",
+            "Microcement",
+            "Travertino"
+          ],
+          "systemKeywords": [
+            "concretta",
+            "marmorino",
+            "palladino",
+            "tintoretto",
+            "lime wash",
+            "golmex",
+            "stucco veneziano"
+          ]
+        },
+        {
+          "id": "meo-mc807",
+          "manufacturer": "Meoded",
+          "code": "MC-807",
+          "name": "Concrete",
+          "hex": "#989793",
+          "undertone": "Architectural Cast Cement",
+          "lrvApprox": 31,
+          "sheenBehavior": "True board-formed concrete gray; signature tone for Golmex and Concretta FS seamless walls.",
+          "tintBaseLimit": "full-spectrum",
+          "visualizerSystems": [
+            "Microcement",
+            "Tadelakt",
+            "Venetian Marmorino",
+            "Travertino"
+          ],
+          "systemKeywords": [
+            "concretta",
+            "golmex",
+            "marmorino",
+            "palladino",
+            "tintoretto",
+            "stucco veneziano"
+          ]
+        },
+        {
+          "id": "meo-mc885",
+          "manufacturer": "Meoded",
+          "code": "MC-885",
+          "name": "Charcoal",
+          "hex": "#505150",
+          "undertone": "Deep Soot Charcoal",
+          "lrvApprox": 9,
+          "sheenBehavior": "Dramatic statement charcoal for range hoods and burnished Venetian feature walls; shows dramatic silvery burnish highlights.",
+          "tintBaseLimit": "full-spectrum",
+          "visualizerSystems": [
+            "Venetian Marmorino",
+            "Microcement",
+            "Tadelakt"
+          ],
+          "systemKeywords": [
+            "concretta",
+            "golmex",
+            "marmorino",
+            "tintoretto",
+            "stucco veneziano",
+            "lime wash"
+          ]
+        },
+        {
+          "id": "meo-mc893",
+          "manufacturer": "Meoded",
+          "code": "MC-893",
+          "name": "Dark Knight",
+          "hex": "#36383B",
+          "undertone": "Obsidian Slate Black",
+          "lrvApprox": 5,
+          "sheenBehavior": "Ultra-deep architectural black-slate; high-polish Stucco Veneziano creates mirror-like depth, while PlasterGuard deepens tone.",
+          "tintBaseLimit": "full-spectrum",
+          "visualizerSystems": [
+            "Venetian Marmorino",
+            "Microcement",
+            "Tadelakt"
+          ],
+          "systemKeywords": [
+            "concretta",
+            "golmex",
+            "marmorino",
+            "tintoretto",
+            "stucco veneziano"
+          ]
+        }
+      ]
+    },
+    {
+      "manufacturer": "Vasari",
+      "paletteName": "Vasari 2026 A-Series Lime Palette",
+      "note": "Formulated specifically for natural slaked lime & powdered marble across Veneziano, Marmorino, Carrera, Corso & Lime Paint.",
+      "swatches": [
+        {
+          "id": "vas-a001",
+          "manufacturer": "Vasari",
+          "code": "A001",
+          "name": "Natural White",
+          "hex": "#F4F1E9",
+          "undertone": "Unpigmented Marble Lime",
+          "lrvApprox": 87,
+          "sheenBehavior": "Pure slaked-lime & marble white; luminous specular polish in Veneziano and soft diffused chalk in Marmorino.",
+          "tintBaseLimit": "light-to-medium",
+          "visualizerSystems": [
+            "Venetian Marmorino",
+            "Biolime",
+            "Limewash",
+            "Tadelakt",
+            "Roman Clay",
+            "Travertino"
+          ],
+          "systemKeywords": [
+            "vasari",
+            "marmorino",
+            "venetian",
+            "veneziano",
+            "lime"
+          ]
+        },
+        {
+          "id": "vas-a006",
+          "manufacturer": "Vasari",
+          "code": "A006",
+          "name": "Piedra Blanca",
+          "hex": "#EBE5D8",
+          "undertone": "Warm White Limestone",
+          "lrvApprox": 79,
+          "sheenBehavior": "Timeless sun-washed white stone; gentle tonal shifts keep large open walls feeling alive rather than flat.",
+          "tintBaseLimit": "light-to-medium",
+          "visualizerSystems": [
+            "Venetian Marmorino",
+            "Biolime",
+            "Limewash",
+            "Tadelakt",
+            "Roman Clay",
+            "Travertino"
+          ],
+          "systemKeywords": [
+            "vasari",
+            "marmorino",
+            "venetian",
+            "veneziano",
+            "lime"
+          ]
+        },
+        {
+          "id": "vas-a117",
+          "manufacturer": "Vasari",
+          "code": "A117",
+          "name": "Yuzu",
+          "hex": "#EFE5CE",
+          "undertone": "Pale Warm Cream",
+          "lrvApprox": 77,
+          "sheenBehavior": "Replaces conventional warm white paint with luminous mineral depth and subtle butter-cream warmth.",
+          "tintBaseLimit": "light-to-medium",
+          "visualizerSystems": [
+            "Venetian Marmorino",
+            "Biolime",
+            "Limewash",
+            "Roman Clay"
+          ],
+          "systemKeywords": [
+            "vasari",
+            "marmorino",
+            "venetian",
+            "veneziano",
+            "lime"
+          ]
+        },
+        {
+          "id": "vas-a022",
+          "manufacturer": "Vasari",
+          "code": "A022",
+          "name": "Marcona",
+          "hex": "#DFD2BD",
+          "undertone": "Blond Almond",
+          "lrvApprox": 65,
+          "sheenBehavior": "Even, welcoming almond warmth tailored for residential living spaces and hospitality Marmorino walls.",
+          "tintBaseLimit": "light-to-medium",
+          "visualizerSystems": [
+            "Venetian Marmorino",
+            "Biolime",
+            "Limewash",
+            "Tadelakt",
+            "Roman Clay",
+            "Travertino"
+          ],
+          "systemKeywords": [
+            "vasari",
+            "marmorino",
+            "venetian",
+            "veneziano",
+            "lime"
+          ]
+        },
+        {
+          "id": "vas-a029",
+          "manufacturer": "Vasari",
+          "code": "A029",
+          "name": "Fossil",
+          "hex": "#CFC1AA",
+          "undertone": "Golden Stone Beige",
+          "lrvApprox": 54,
+          "sheenBehavior": "Beige with subtle hints of gold; gains dramatic translucent depth in polished Veneziano and reads grounded in matte Marmorino.",
+          "tintBaseLimit": "light-to-medium",
+          "visualizerSystems": [
+            "Venetian Marmorino",
+            "Biolime",
+            "Limewash",
+            "Tadelakt",
+            "Roman Clay",
+            "Travertino"
+          ],
+          "systemKeywords": [
+            "vasari",
+            "marmorino",
+            "venetian",
+            "veneziano",
+            "lime"
+          ]
+        },
+        {
+          "id": "vas-a030",
+          "manufacturer": "Vasari",
+          "code": "A030",
+          "name": "Abora",
+          "hex": "#C4BCB0",
+          "undertone": "Balanced Greige",
+          "lrvApprox": 50,
+          "sheenBehavior": "Sits right between warm and cool — ideal bridge color when pairing warm wood floors with cooler stone or cabinetry.",
+          "tintBaseLimit": "light-to-medium",
+          "visualizerSystems": [
+            "Venetian Marmorino",
+            "Biolime",
+            "Limewash",
+            "Tadelakt",
+            "Roman Clay",
+            "Travertino"
+          ],
+          "systemKeywords": [
+            "vasari",
+            "marmorino",
+            "venetian",
+            "veneziano",
+            "lime"
+          ]
+        },
+        {
+          "id": "vas-a054",
+          "manufacturer": "Vasari",
+          "code": "A054",
+          "name": "Dolomite",
+          "hex": "#BEB9B0",
+          "undertone": "Alpine Mineral Grey",
+          "lrvApprox": 48,
+          "sheenBehavior": "Crisp crushed-dolomite neutral with soft mineral variation across 2–3 thin trowel passes.",
+          "tintBaseLimit": "light-to-medium",
+          "visualizerSystems": [
+            "Venetian Marmorino",
+            "Biolime",
+            "Tadelakt",
+            "Travertino"
+          ],
+          "systemKeywords": [
+            "vasari",
+            "marmorino",
+            "venetian",
+            "veneziano",
+            "lime"
+          ]
+        },
+        {
+          "id": "vas-a158",
+          "manufacturer": "Vasari",
+          "code": "A158",
+          "name": "Andalus",
+          "hex": "#C59F87",
+          "undertone": "Beige Terracotta",
+          "lrvApprox": 40,
+          "sheenBehavior": "Soft sun-baked clay bridging neutral beige and terracotta; rich biophilic warmth on plaster niches and hoods.",
+          "tintBaseLimit": "full-spectrum",
+          "visualizerSystems": [
+            "Venetian Marmorino",
+            "Biolime",
+            "Roman Clay",
+            "Tadelakt"
+          ],
+          "systemKeywords": [
+            "vasari",
+            "marmorino",
+            "venetian",
+            "veneziano",
+            "lime"
+          ]
+        },
+        {
+          "id": "vas-a046",
+          "manufacturer": "Vasari",
+          "code": "A046",
+          "name": "Sumatra",
+          "hex": "#7D6759",
+          "undertone": "Deep Reddish Umber",
+          "lrvApprox": 16,
+          "sheenBehavior": "Deep muted earth brown; shows strong tonal movement when burnished in Veneziano.",
+          "tintBaseLimit": "full-spectrum",
+          "visualizerSystems": [
+            "Venetian Marmorino",
+            "Roman Clay",
+            "Tadelakt"
+          ],
+          "systemKeywords": [
+            "vasari",
+            "marmorino",
+            "venetian",
+            "veneziano"
+          ]
+        },
+        {
+          "id": "vas-a074",
+          "manufacturer": "Vasari",
+          "code": "A074",
+          "name": "Carbon",
+          "hex": "#464644",
+          "undertone": "Burnished Mineral Carbon",
+          "lrvApprox": 7,
+          "sheenBehavior": "Statement dark mineral charcoal; high-gloss burnishing creates dramatic marble depth in dining rooms and range hoods.",
+          "tintBaseLimit": "full-spectrum",
+          "visualizerSystems": [
+            "Venetian Marmorino",
+            "Tadelakt"
+          ],
+          "systemKeywords": [
+            "vasari",
+            "marmorino",
+            "venetian",
+            "veneziano"
+          ]
+        }
+      ]
+    },
+    {
+      "manufacturer": "SureCrete",
+      "paletteName": "SureCrete SC Color Pack Palette",
+      "note": "Pre-measured 100% synthetic UV-stable iron-oxide pigment packs (1 pack per bag of white MicroTek, SureBroom, SureTex, or SureSpray).",
+      "swatches": [
+        {
+          "id": "sc-nat-white",
+          "manufacturer": "SureCrete",
+          "code": "SC-NATWHT",
+          "name": "Natural White",
+          "hex": "#ECE9E1",
+          "undertone": "White Cement Canvas",
+          "lrvApprox": 82,
+          "sheenBehavior": "Clean architectural microcement white; deepens slightly under FloorTek NanoCoat or Dura-Kote polyurethane.",
+          "tintBaseLimit": "light-to-medium",
+          "visualizerSystems": [
+            "Microcement",
+            "Tadelakt"
+          ],
+          "systemKeywords": [
+            "surebroom",
+            "microtek",
+            "microcement"
+          ]
+        },
+        {
+          "id": "sc-ant-white",
+          "manufacturer": "SureCrete",
+          "code": "SC-ANTWHT",
+          "name": "Antique White",
+          "hex": "#E3DCCD",
+          "undertone": "Warm Bone White",
+          "lrvApprox": 74,
+          "sheenBehavior": "Soft warm micro-topping white that prevents sterile floor or shower-wall glare.",
+          "tintBaseLimit": "light-to-medium",
+          "visualizerSystems": [
+            "Microcement",
+            "Tadelakt"
+          ],
+          "systemKeywords": [
+            "surebroom",
+            "microtek",
+            "microcement"
+          ]
+        },
+        {
+          "id": "sc-ivory",
+          "manufacturer": "SureCrete",
+          "code": "SC-IVORY",
+          "name": "Ivory",
+          "hex": "#DFD4BE",
+          "undertone": "Creamy Travertine",
+          "lrvApprox": 68,
+          "sheenBehavior": "Warm ivory cement tone; penetrating sealers bring out subtle tight-trowel compression clouds.",
+          "tintBaseLimit": "light-to-medium",
+          "visualizerSystems": [
+            "Microcement",
+            "Tadelakt",
+            "Travertino"
+          ],
+          "systemKeywords": [
+            "surebroom",
+            "microtek",
+            "microcement"
+          ]
+        },
+        {
+          "id": "sc-limestone",
+          "manufacturer": "SureCrete",
+          "code": "SC-LIME",
+          "name": "Limestone",
+          "hex": "#D0C8B8",
+          "undertone": "Quarried Limestone",
+          "lrvApprox": 58,
+          "sheenBehavior": "Go-to neutral stone color for seamless MicroTek bathroom walls, floors, and commercial broom overlays.",
+          "tintBaseLimit": "light-to-medium",
+          "visualizerSystems": [
+            "Microcement",
+            "Tadelakt",
+            "Travertino"
+          ],
+          "systemKeywords": [
+            "surebroom",
+            "microtek",
+            "microcement"
+          ]
+        },
+        {
+          "id": "sc-putty",
+          "manufacturer": "SureCrete",
+          "code": "SC-PUTTY",
+          "name": "Putty",
+          "hex": "#C2B7A3",
+          "undertone": "Warm Mineral Putty",
+          "lrvApprox": 49,
+          "sheenBehavior": "Organic warm greige concrete look; pairs well with natural white oak and unlacquered brass.",
+          "tintBaseLimit": "light-to-medium",
+          "visualizerSystems": [
+            "Microcement",
+            "Tadelakt"
+          ],
+          "systemKeywords": [
+            "surebroom",
+            "microtek",
+            "microcement"
+          ]
+        },
+        {
+          "id": "sc-sand-buff",
+          "manufacturer": "SureCrete",
+          "code": "SC-SANDBUFF",
+          "name": "Sand Buff",
+          "hex": "#C8B294",
+          "undertone": "Desert Sandstone",
+          "lrvApprox": 47,
+          "sheenBehavior": "UV-stable sandstone buff popular for exterior SureBroom patios, pool decks, and warm interior floors.",
+          "tintBaseLimit": "light-to-medium",
+          "visualizerSystems": [
+            "Microcement",
+            "Travertino"
+          ],
+          "systemKeywords": [
+            "surebroom",
+            "microtek",
+            "microcement"
+          ]
+        },
+        {
+          "id": "sc-silver",
+          "manufacturer": "SureCrete",
+          "code": "SC-SILVER",
+          "name": "Silver",
+          "hex": "#C2C4C4",
+          "undertone": "Light Platinum Gray",
+          "lrvApprox": 55,
+          "sheenBehavior": "Bright modern architectural concrete gray with crisp trowel movement.",
+          "tintBaseLimit": "light-to-medium",
+          "visualizerSystems": [
+            "Microcement",
+            "Tadelakt"
+          ],
+          "systemKeywords": [
+            "surebroom",
+            "microtek",
+            "microcement"
+          ]
+        },
+        {
+          "id": "sc-dove-gray",
+          "manufacturer": "SureCrete",
+          "code": "SC-DOVE",
+          "name": "Dove Gray",
+          "hex": "#A9ABA8",
+          "undertone": "Soft Neutral Cement",
+          "lrvApprox": 41,
+          "sheenBehavior": "Balanced mid-light concrete gray; hides foot traffic and dust cleanly on commercial and residential floors.",
+          "tintBaseLimit": "light-to-medium",
+          "visualizerSystems": [
+            "Microcement",
+            "Tadelakt"
+          ],
+          "systemKeywords": [
+            "surebroom",
+            "microtek",
+            "microcement"
+          ]
+        },
+        {
+          "id": "sc-concrete-gray",
+          "manufacturer": "SureCrete",
+          "code": "SC-CONCGRAY",
+          "name": "Concrete Gray",
+          "hex": "#8E908D",
+          "undertone": "True Cured Slab Gray",
+          "lrvApprox": 28,
+          "sheenBehavior": "Classic troweled slab gray; color-enhancing sealers enrich depth by ~15%.",
+          "tintBaseLimit": "full-spectrum",
+          "visualizerSystems": [
+            "Microcement",
+            "Tadelakt"
+          ],
+          "systemKeywords": [
+            "surebroom",
+            "microtek",
+            "microcement"
+          ]
+        },
+        {
+          "id": "sc-taupe",
+          "manufacturer": "SureCrete",
+          "code": "SC-TAUPE",
+          "name": "Taupe",
+          "hex": "#96897B",
+          "undertone": "Earthy Warm Concrete",
+          "lrvApprox": 26,
+          "sheenBehavior": "Warm architectural taupe microcement with rich organic mottling.",
+          "tintBaseLimit": "full-spectrum",
+          "visualizerSystems": [
+            "Microcement",
+            "Tadelakt"
+          ],
+          "systemKeywords": [
+            "surebroom",
+            "microtek",
+            "microcement"
+          ]
+        },
+        {
+          "id": "sc-smoke",
+          "manufacturer": "SureCrete",
+          "code": "SC-SMOKE",
+          "name": "Smoke",
+          "hex": "#737677",
+          "undertone": "Cool Steel Slate",
+          "lrvApprox": 19,
+          "sheenBehavior": "Medium-dark industrial slate gray for modern microcement showers, hearths, and floors.",
+          "tintBaseLimit": "full-spectrum",
+          "visualizerSystems": [
+            "Microcement",
+            "Tadelakt"
+          ],
+          "systemKeywords": [
+            "surebroom",
+            "microtek",
+            "microcement"
+          ]
+        },
+        {
+          "id": "sc-charcoal",
+          "manufacturer": "SureCrete",
+          "code": "SC-CHAR",
+          "name": "Charcoal",
+          "hex": "#484A4B",
+          "undertone": "Deep Iron-Oxide Charcoal",
+          "lrvApprox": 8,
+          "sheenBehavior": "Bold dark charcoal overlay; dramatic tight-trowel variation under matte or satin urethane topcoats.",
+          "tintBaseLimit": "full-spectrum",
+          "visualizerSystems": [
+            "Microcement",
+            "Tadelakt"
+          ],
+          "systemKeywords": [
+            "surebroom",
+            "microtek",
+            "microcement"
+          ]
+        }
+      ]
+    }
+  ],
+  "designer_paint_cross_reference": [
+    {
+      "id": "sw-7042",
+      "brand": "Sherwin-Williams",
+      "code": "SW 7042",
+      "name": "Shoji White",
+      "aliases": [
+        "spectrum shoji white",
+        "shoji"
+      ],
+      "hex": "#E6DFD3",
+      "lrv": 74,
+      "undertone": "Warm Creamy Greige (subtle taupe-beige base)",
+      "fieldNote": "Warmer and slightly deeper than Alabaster; avoids stark glare and bridges warm wood + stone."
+    },
+    {
+      "id": "bm-oc45",
+      "brand": "Benjamin Moore",
+      "code": "OC-45",
+      "name": "Swiss Coffee (BM)",
+      "aliases": [
+        "swiss coffee",
+        "benjamin moore swiss coffee",
+        "oc 45"
+      ],
+      "hex": "#EFECE3",
+      "lrv": 82,
+      "undertone": "Soft Creamy Off-White with Muted Green-Gray Drop",
+      "fieldNote": "TRAP ALERT: BM OC-45 (LRV 82) is much brighter and cleaner than Meoded stock MC-756 Swiss Coffee (LRV 73)."
+    },
+    {
+      "id": "behr-12",
+      "brand": "Behr",
+      "code": "12",
+      "name": "Swiss Coffee (Behr)",
+      "aliases": [
+        "behr swiss coffee"
+      ],
+      "hex": "#F1EAD8",
+      "lrv": 84,
+      "undertone": "Warm Butter-Ivory Cream",
+      "fieldNote": "Noticeably yellower/butterier than BM OC-45 Swiss Coffee."
+    },
+    {
+      "id": "de-dew341",
+      "brand": "Dunn-Edwards / Spectrum",
+      "code": "DEW341",
+      "name": "Swiss Coffee (DE / Spectrum)",
+      "aliases": [
+        "spectrum swiss coffee",
+        "dunn edwards swiss coffee"
+      ],
+      "hex": "#F0ECE1",
+      "lrv": 83,
+      "undertone": "Crisp Warm Cream White",
+      "fieldNote": "Clean warm off-white; brighter than Meoded stock MC-756 Swiss Coffee."
+    },
+    {
+      "id": "sw-7008",
+      "brand": "Sherwin-Williams",
+      "code": "SW 7008",
+      "name": "Alabaster",
+      "aliases": [
+        "alabaster"
+      ],
+      "hex": "#EDEAE0",
+      "lrv": 82,
+      "undertone": "Soft Warm Creamy White",
+      "fieldNote": "Go-to warm white without heavy yellow; very close in brightness to White Dove."
+    },
+    {
+      "id": "bm-oc17",
+      "brand": "Benjamin Moore",
+      "code": "OC-17",
+      "name": "White Dove",
+      "aliases": [
+        "bm white dove",
+        "oc 17"
+      ],
+      "hex": "#EFECE4",
+      "lrv": 83,
+      "undertone": "Soft Greige-Muted Warm White",
+      "fieldNote": "Tiny drop of grey keeps it soft and prevents yellowing."
+    },
+    {
+      "id": "sw-7005",
+      "brand": "Sherwin-Williams",
+      "code": "SW 7005",
+      "name": "Pure White",
+      "aliases": [
+        "sw pure white"
+      ],
+      "hex": "#EDECE6",
+      "lrv": 84,
+      "undertone": "Clean Neutral White (slight warm-grey softness)",
+      "fieldNote": "Crisp modern trim and plaster white without turning icy blue."
+    },
+    {
+      "id": "bm-oc65",
+      "brand": "Benjamin Moore",
+      "code": "OC-65",
+      "name": "Chantilly Lace",
+      "aliases": [
+        "chantilly lace"
+      ],
+      "hex": "#F5F5F2",
+      "lrv": 90,
+      "undertone": "Ultra-Clean Crisp Gallery White",
+      "fieldNote": "Very high LRV; pair with unpigmented Natural White / Bianco lime bases."
+    },
+    {
+      "id": "sw-7551",
+      "brand": "Sherwin-Williams",
+      "code": "SW 7551",
+      "name": "Greek Villa",
+      "aliases": [
+        "greek villa"
+      ],
+      "hex": "#F0ECE1",
+      "lrv": 84,
+      "undertone": "Sunlit Warm Cream White",
+      "fieldNote": "Slightly sunnier/warmer than Alabaster."
+    },
+    {
+      "id": "sw-7012",
+      "brand": "Sherwin-Williams",
+      "code": "SW 7012",
+      "name": "Creamy",
+      "aliases": [
+        "sw creamy"
+      ],
+      "hex": "#EFE8D8",
+      "lrv": 81,
+      "undertone": "Soft Ivory Cream",
+      "fieldNote": "Rich warm cream without reading pastel yellow."
+    },
+    {
+      "id": "sw-7011",
+      "brand": "Sherwin-Williams",
+      "code": "SW 7011",
+      "name": "Natural Choice",
+      "aliases": [
+        "natural choice"
+      ],
+      "hex": "#E3DEC9",
+      "lrv": 73,
+      "undertone": "Earthy Almond Cream",
+      "fieldNote": "Reads like warm European limestone in troweled finishes."
+    },
+    {
+      "id": "bm-oc117",
+      "brand": "Benjamin Moore",
+      "code": "OC-117",
+      "name": "Simply White",
+      "aliases": [
+        "simply white"
+      ],
+      "hex": "#F4F2E8",
+      "lrv": 89,
+      "undertone": "FreshHint-of-Warmth Bright White",
+      "fieldNote": "Bright warm white; subtle sunlit undertone in morning/afternoon light."
+    },
+    {
+      "id": "fb-2001",
+      "brand": "Farrow & Ball",
+      "code": "No. 2001",
+      "name": "Strong White",
+      "aliases": [
+        "strong white"
+      ],
+      "hex": "#E5E2DC",
+      "lrv": 76,
+      "undertone": "Cool Chalky Limestone White",
+      "fieldNote": "Subtle grey mineral base perfect for contemporary plaster."
+    },
+    {
+      "id": "fb-2005",
+      "brand": "Farrow & Ball",
+      "code": "No. 2005",
+      "name": "Pointing",
+      "aliases": [
+        "pointing"
+      ],
+      "hex": "#EFE9DC",
+      "lrv": 82,
+      "undertone": "Warm Lime-Mortar Ivory",
+      "fieldNote": "Named after traditional lime pointing mortar."
+    },
+    {
+      "id": "sw-7029",
+      "brand": "Sherwin-Williams",
+      "code": "SW 7029",
+      "name": "Agreeable Gray",
+      "aliases": [
+        "agreeable gray",
+        "agreeable grey"
+      ],
+      "hex": "#D1CBC1",
+      "lrv": 60,
+      "undertone": "Balanced Warm Greige",
+      "fieldNote": "Sits cleanly between warm beige and cool gray."
+    },
+    {
+      "id": "sw-7036",
+      "brand": "Sherwin-Williams",
+      "code": "SW 7036",
+      "name": "Accessible Beige",
+      "aliases": [
+        "accessible beige"
+      ],
+      "hex": "#D1C7B8",
+      "lrv": 58,
+      "undertone": "Gray-Spun Warm Beige",
+      "fieldNote": "Warm sand-beige toned down with grey so it never turns orange."
+    },
+    {
+      "id": "bm-oc20",
+      "brand": "Benjamin Moore",
+      "code": "OC-20",
+      "name": "Pale Oak",
+      "aliases": [
+        "pale oak"
+      ],
+      "hex": "#DDD7CC",
+      "lrv": 69,
+      "undertone": "Light Taupe-Greige with Subtle Blush Warmth",
+      "fieldNote": "Airy, refined greige that shifts softly with daylight."
+    },
+    {
+      "id": "bm-hc172",
+      "brand": "Benjamin Moore",
+      "code": "HC-172",
+      "name": "Revere Pewter",
+      "aliases": [
+        "revere pewter"
+      ],
+      "hex": "#CCC7B9",
+      "lrv": 55,
+      "undertone": "Earthy Warm Gray-Green Greige",
+      "fieldNote": "Classic medium-light limestone greige."
+    },
+    {
+      "id": "bm-hc173",
+      "brand": "Benjamin Moore",
+      "code": "HC-173",
+      "name": "Edgecomb Gray",
+      "aliases": [
+        "edgecomb gray",
+        "edgecomb grey"
+      ],
+      "hex": "#DBD5C7",
+      "lrv": 63,
+      "undertone": "Soft Organic Beige-Gray",
+      "fieldNote": "Lighter, warmer sibling of Revere Pewter."
+    },
+    {
+      "id": "bm-oc23",
+      "brand": "Benjamin Moore",
+      "code": "OC-23",
+      "name": "Classic Gray",
+      "aliases": [
+        "classic gray",
+        "classic grey"
+      ],
+      "hex": "#E4E0D8",
+      "lrv": 74,
+      "undertone": "Whisper-Light Warm Greige",
+      "fieldNote": "Reads as a nuanced off-white in bright rooms and pale stone in shade."
+    },
+    {
+      "id": "bm-990",
+      "brand": "Benjamin Moore",
+      "code": "990",
+      "name": "ampshire Taupe / Taj Mahal",
+      "aliases": [
+        "taj mahal",
+        "hampshire taupe"
+      ],
+      "hex": "#D8CCB8",
+      "lrv": 60,
+      "undertone": "Warm Quartzite / Limestone Sand",
+      "fieldNote": "Popular match for Taj Mahal quartzite countertops and range hoods."
+    },
+    {
+      "id": "sw-9173",
+      "brand": "Sherwin-Williams",
+      "code": "SW 9173",
+      "name": "Shiitake",
+      "aliases": [
+        "shiitake"
+      ],
+      "hex": "#C8BCAB",
+      "lrv": 51,
+      "undertone": "Warm Mushroom Stone Taupe",
+      "fieldNote": "Grounded organic mushroom tone for hoods and Plaster walls."
+    },
+    {
+      "id": "sw-7037",
+      "brand": "Sherwin-Williams",
+      "code": "SW 7037",
+      "name": "Balanced Beige",
+      "aliases": [
+        "balanced beige"
+      ],
+      "hex": "#C1B3A0",
+      "lrv": 46,
+      "undertone": "Rich Earthy Sand Taupe",
+      "fieldNote": "Medium warm taupe with strong movement in Marmorino."
+    },
+    {
+      "id": "fb-15",
+      "brand": "Farrow & Ball",
+      "code": "No. 15",
+      "name": "Bone",
+      "aliases": [
+        "farrow and ball bone"
+      ],
+      "hex": "#CFC8B8",
+      "lrv": 57,
+      "undertone": "Mineral Chalky Khaki-Stone",
+      "fieldNote": "Timeless mineral stone neutral."
+    },
+    {
+      "id": "fb-9",
+      "brand": "Farrow & Ball",
+      "code": "No. 9",
+      "name": "Elephant's Breath",
+      "aliases": [
+        "elephants breath",
+        "elephant's breath"
+      ],
+      "hex": "#C4BCB0",
+      "lrv": 52,
+      "undertone": "Warm Mid-Greige with Subtle Lilac-Taupe Warmth",
+      "fieldNote": "Reads uplifting charcoal-taupe in west light and cool stone in north light."
+    },
+    {
+      "id": "sw-7015",
+      "brand": "Sherwin-Williams",
+      "code": "SW 7015",
+      "name": "Repose Gray",
+      "aliases": [
+        "repose gray",
+        "repose grey"
+      ],
+      "hex": "#C8C6C0",
+      "lrv": 58,
+      "undertone": "Clean Cool-Neutral Architectural Gray",
+      "fieldNote": "Crisp modern concrete/stone gray."
+    },
+    {
+      "id": "bm-1465",
+      "brand": "Benjamin Moore",
+      "code": "1465",
+      "name": "Nimbus",
+      "aliases": [
+        "nimbus"
+      ],
+      "hex": "#C6C6C1",
+      "lrv": 56,
+      "undertone": "Soft Misty Cloud Gray",
+      "fieldNote": "Calm architectural gray for microcement and Venetian."
+    },
+    {
+      "id": "sw-7018",
+      "brand": "Sherwin-Williams",
+      "code": "SW 7018",
+      "name": "Dovetail",
+      "aliases": [
+        "dovetail"
+      ],
+      "hex": "#928E89",
+      "lrv": 26,
+      "undertone": "Warm Weathered Slate Gray",
+      "fieldNote": "Mid-dark concrete/stone shade."
+    },
+    {
+      "id": "bm-hc166",
+      "brand": "Benjamin Moore",
+      "code": "HC-166",
+      "name": "Kendall Charcoal",
+      "aliases": [
+        "kendall charcoal"
+      ],
+      "hex": "#696864",
+      "lrv": 14,
+      "undertone": "Rich Warm-Neutral Charcoal",
+      "fieldNote": "Versatile dark charcoal without harsh blue undertone."
+    },
+    {
+      "id": "sw-7048",
+      "brand": "Sherwin-Williams",
+      "code": "SW 7048",
+      "name": "Urbane Bronze",
+      "aliases": [
+        "urbane bronze"
+      ],
+      "hex": "#57524B",
+      "lrv": 8,
+      "undertone": "Deep Earthy Brown-Bronze Charcoal",
+      "fieldNote": "Grounded organic dark bronze-gray; dramatic on range hoods."
+    },
+    {
+      "id": "sw-7069",
+      "brand": "Sherwin-Williams",
+      "code": "SW 7069",
+      "name": "Iron Ore",
+      "aliases": [
+        "iron ore"
+      ],
+      "hex": "#464746",
+      "lrv": 6,
+      "undertone": "Softened Graphite Charcoal-Black",
+      "fieldNote": "Statement charcoal-black; requires full-spectrum plaster or microcement."
+    },
+    {
+      "id": "sw-6258",
+      "brand": "Sherwin-Williams",
+      "code": "SW 6258",
+      "name": "Tricorn Black",
+      "aliases": [
+        "tricorn black"
+      ],
+      "hex": "#313233",
+      "lrv": 3,
+      "undertone": "True Neutral Obsidian Black",
+      "fieldNote": "Deepest architectural black; burnishes to dramatic obsidian marble."
+    }
+  ]
+}

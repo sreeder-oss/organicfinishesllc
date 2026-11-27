@@ -289,16 +289,25 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
 
   const claraChips = [
-    { label: 'Sample Boards', query: 'How do sample boards and colors work?' },
+    { label: 'Match a Paint', query: 'What mineral color matches Shoji White?' },
+    { label: 'Swiss Coffee Trap', query: 'What matches Swiss Coffee?' },
+    { label: 'Sample Boards', query: 'How do sample boards and deposits work?' },
     { label: 'Over Tile', query: 'Can microcement go over existing tile?' },
-    { label: 'Travel & Area', query: 'Where do you travel and work?' },
-    { label: 'Size & Prep', query: 'What is your project size limit and drywall prep?' },
-    { label: 'Pricing & Contact', query: 'How do estimates and contacting Shawn work?' }
+    { label: 'Size & Prep', query: 'What is your project size limit and drywall prep?' }
   ];
 
   const matchClaraReply = (input) => {
     const clean = input.toLowerCase().trim();
     if (!clean) return null;
+
+    // Strict guard: never quote dollar prices in chat
+    const isExplicitPriceAsk = /\b(price|pricing|cost|how much|rate|rates|dollar|fee)\b/.test(clean);
+    if (!isExplicitPriceAsk && window.OF_COLOR_ENGINE && typeof window.OF_COLOR_ENGINE.answerClaraColorQuery === 'function') {
+      const colorReply = window.OF_COLOR_ENGINE.answerClaraColorQuery(input);
+      if (colorReply) {
+        return colorReply;
+      }
+    }
 
     let bestMatch = null;
     let bestScore = 0;
@@ -320,7 +329,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return bestMatch.reply;
     }
 
-    return 'I want to make sure you get an accurate answer on that. For specific project questions, please call or text Shawn directly at <a href="tel:4058160750">405-816-0750</a>, email <a href="mailto:contact@organicfinishesllc.org">contact@organicfinishesllc.org</a>, or leave details in the <a href="#contact">inquiry form</a>.';
+    return 'I want to make sure you get an accurate answer on that. You can also type any designer paint name (like <em>Shoji White</em>, <em>Swiss Coffee</em>, or <em>Agreeable Gray</em>) to find our closest mineral swatches—or call/text Shawn directly at <a href="tel:4058160750">405-816-0750</a>.';
   };
 
   const launcher = document.createElement('button');
@@ -342,7 +351,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="clara-avatar" aria-hidden="true">C</div>
         <div>
           <div class="clara-name">Clara</div>
-          <div class="clara-subtitle">Studio Concierge</div>
+          <div class="clara-subtitle">Studio &amp; Color Concierge</div>
         </div>
       </div>
       <button type="button" class="clara-close" aria-label="Close Clara chat">Close [×]</button>
@@ -350,7 +359,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <div class="clara-messages" id="clara-messages"></div>
     <div class="clara-chips" id="clara-chips"></div>
     <form class="clara-input-row" id="clara-form">
-      <input type="text" id="clara-input" class="clara-input" placeholder="Ask about finishes, prep, travel..." autocomplete="off" />
+      <input type="text" id="clara-input" class="clara-input" placeholder="Ask about a paint match (e.g. Shoji White), prep, travel..." autocomplete="off" />
       <button type="submit" class="clara-send">Send</button>
     </form>
   `;
@@ -377,7 +386,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   appendMessage(
-    'Hello — I’m <strong>Clara</strong>, the studio concierge for Organic Finishes LLC. Ask me about microcement, Tadelakt, sample boards, drywall prep, travel, or scheduling.',
+    'Hello — I’m <strong>Clara</strong>, the studio &amp; color concierge for Organic Finishes LLC. Ask me to cross-reference a designer paint color (like <em>Shoji White</em>, <em>Swiss Coffee</em>, or <em>Agreeable Gray</em>) across our 46 mineral swatches, or ask about microcement, Tadelakt, sample boards, and prep.',
     'bot'
   );
 
@@ -400,6 +409,27 @@ document.addEventListener('DOMContentLoaded', () => {
     launcher.setAttribute('aria-expanded', String(isOpen));
     if (isOpen) {
       inputEl.focus();
+    }
+  };
+
+  messagesEl.addEventListener('click', (e) => {
+    const jumpBtn = e.target.closest('.clara-swatch-jump');
+    if (jumpBtn && window.OF_COLOR_ENGINE && typeof window.OF_COLOR_ENGINE.focusSwatchOnPage === 'function') {
+      const swatchId = jumpBtn.getAttribute('data-swatch-id');
+      const sys = jumpBtn.getAttribute('data-system');
+      if (window.innerWidth <= 768) {
+        toggleClara(false);
+      }
+      window.OF_COLOR_ENGINE.focusSwatchOnPage(swatchId, sys);
+    }
+  });
+
+  window.openClaraWithQuery = (queryText) => {
+    toggleClara(true);
+    if (queryText) {
+      appendMessage(queryText, 'user');
+      const reply = matchClaraReply(queryText);
+      setTimeout(() => appendMessage(reply, 'bot'), 180);
     }
   };
 
