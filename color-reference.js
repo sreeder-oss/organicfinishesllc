@@ -2506,22 +2506,39 @@
       pageState.systemFilter = 'All';
     }
 
+    setStudioOpen(true);
     updateAllUI();
     const sec = document.getElementById('color-reference') || root;
     sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
     return true;
   }
 
+  function setStudioOpen(isOpen) {
+    if (!uiRefs || !uiRefs.shell || !uiRefs.toggleBtn) return;
+    pageState.isOpen = Boolean(isOpen);
+    uiRefs.shell.classList.toggle('is-open', pageState.isOpen);
+    uiRefs.toggleBtn.setAttribute('aria-expanded', String(pageState.isOpen));
+    uiRefs.toggleBtn.textContent = pageState.isOpen
+      ? 'Close Color Studio [−]'
+      : 'Open Color & Finish Studio [+]';
+    if (pageState.isOpen) {
+      renderSpecimenCanvas(uiRefs.canvas, pageState);
+    }
+  }
+
   function mountColorReference() {
     const root = document.getElementById('of-color-reference-root');
     if (!root) return;
 
-    // Check URL deep-link params (?swatch=...&system=...)
+    let shouldOpenInitially = false;
+
+    // Check URL deep-link params (?swatch=...&system=... or #color-reference)
     try {
       const sp = new URLSearchParams(window.location.search);
       const qSwatch = sp.get('swatch');
       const qSystem = sp.get('system');
       if (qSwatch) {
+        shouldOpenInitially = true;
         const found = ALL_SWATCHES.find((s) => s.id === qSwatch || s.code.toLowerCase() === qSwatch.toLowerCase());
         if (found) {
           pageState.selectedSwatch = found;
@@ -2530,6 +2547,9 @@
               ? qSystem
               : found.visualizerSystems[0] || 'Venetian Marmorino';
         }
+      }
+      if (window.location.hash === '#color-reference') {
+        shouldOpenInitially = true;
       }
     } catch (_) {}
 
@@ -2547,17 +2567,57 @@
       'sw-7069'
     ];
 
+    const previewChipIds = [
+      'rb-bianco',
+      'rb-crema',
+      'meo-mc756',
+      'meo-mc753',
+      'vas-a022',
+      'vas-a158',
+      'sc-limestone',
+      'sc-taupe',
+      'meo-mc885',
+      'meo-mc893'
+    ];
+
     root.innerHTML = `
-      <div class="of-cr-shell">
+      <div class="of-cr-compact-bar">
+        <div class="of-cr-compact-left">
+          <div class="of-cr-preview-strip" aria-hidden="true">
+            ${previewChipIds
+              .map((id) => {
+                const s = ALL_SWATCHES.find((x) => x.id === id);
+                return s
+                  ? `<span class="of-cr-mini-chip" style="background:${s.hex};" title="${s.manufacturer} ${s.code} ${s.name}"></span>`
+                  : '';
+              })
+              .join('')}
+          </div>
+          <div class="of-cr-compact-meta">
+            <strong>46 Factory Swatches</strong> · Romabio, Meoded, Vasari &amp; SureCrete · <strong>32 Designer Paint Cross-References</strong> · Sealer Darkening &amp; Surface Previews
+          </div>
+        </div>
+        <button
+          type="button"
+          id="of-cr-toggle-btn"
+          class="btn btn-primary btn-sm of-cr-toggle-btn"
+          aria-expanded="false"
+          aria-controls="of-cr-shell"
+        >
+          Open Color &amp; Finish Studio [+]
+        </button>
+      </div>
+
+      <div id="of-cr-shell" class="of-cr-shell">
         <!-- Policy & Sealer Physics Ledger Strip -->
         <div class="of-cr-policy-bar">
           <div class="of-cr-policy-item">
             <span class="of-cr-badge-gold">SEALER DARKENING RULE (~10–15%)</span>
-            <span>Penetrating wet-area &amp; wax sealers (<strong>HydroWax, PlasterGuard, NanoCoat, Dura-Kote</strong>) deepen mineral tone ~10–15%. Toggle the split specimen board below to inspect raw vs. sealed depth.</span>
+            <span>Wet-area &amp; wax sealers (<strong>HydroWax, PlasterGuard, NanoCoat, Dura-Kote</strong>) deepen mineral tone ~10–15%.</span>
           </div>
           <div class="of-cr-policy-item">
             <span class="of-cr-badge-green">CUSTOM PAINT MATCH POLICY</span>
-            <span>Custom color drawdowns require <strong>+7–10 business days</strong> lead time; custom project sample boards are fabricated after a <strong>50% deposit</strong> is secured. <strong>Signed physical mineral sample board approval overrides paper paint chips.</strong></span>
+            <span>Custom drawdowns require <strong>+7–10 business days</strong>; custom sample boards follow a <strong>50% deposit</strong>. <strong>Signed physical mineral sample boards override paper paint chips.</strong></span>
           </div>
         </div>
 
@@ -2566,14 +2626,14 @@
           <div class="of-cr-matcher-head">
             <div>
               <span class="of-cr-kicker">PERCEPTUAL CIELAB (ΔE) CROSS-REFERENCE // 32 DESIGNER FAN-DECK BENCHMARKS</span>
-              <h3 class="heading-md" style="color: var(--brand-cream); margin-top: 0.2rem;">Match a Designer Paint Name to Native Factory Mineral Offerings</h3>
+              <h3 class="heading-md" style="color: var(--brand-cream); margin-top: 0.15rem;">Match a Designer Paint Name to Native Mineral Swatches</h3>
             </div>
             <div class="of-cr-matcher-controls">
               <input
                 type="search"
                 id="of-cr-paint-search"
                 class="of-cr-paint-input"
-                placeholder="Search paint name or code (e.g., Shoji White, Swiss Coffee, OC-45, Agreeable Gray)..."
+                placeholder="Search paint (e.g., Shoji White, Swiss Coffee, OC-45)..."
                 aria-label="Search designer paint name or code"
               />
               <select id="of-cr-paint-select" class="of-cr-paint-select" aria-label="Select designer paint reference">
@@ -2603,7 +2663,7 @@
 
         <!-- 2. Main Interactive Studio Specimen Board + 46-Swatch Catalog -->
         <div class="of-cr-workspace">
-          <!-- Left Sticky Specimen Visualizer -->
+          <!-- Left Specimen Visualizer -->
           <aside class="of-cr-inspector" aria-label="Interactive Mineral Specimen Inspector">
             <div class="of-cr-view-tabs" role="tablist" aria-label="Surface Visualization Context">
               <button type="button" class="of-cr-view-tab active" data-view="board">Sample Board</button>
@@ -2613,7 +2673,7 @@
             </div>
 
             <div class="of-cr-canvas-wrap">
-              <canvas id="of-cr-canvas" width="620" height="390"></canvas>
+              <canvas id="of-cr-canvas" width="560" height="295"></canvas>
             </div>
 
             <div class="of-cr-canvas-controls">
@@ -2630,11 +2690,11 @@
             <div id="of-cr-dossier" class="of-cr-dossier"></div>
           </aside>
 
-          <!-- Right 46-Swatch Filterable Matrix -->
+          <!-- Right 46-Swatch Filterable Matrix (Compact Scrollable Tray) -->
           <div class="of-cr-catalog-col">
             <div class="of-cr-filters">
               <div class="of-cr-filter-group">
-                <div class="of-cr-filter-label">FILTER BY FINISH SYSTEM</div>
+                <div class="of-cr-filter-label">FINISH SYSTEM</div>
                 <div class="of-cr-pill-row" id="of-cr-system-pills">
                   <button type="button" class="of-cr-filter-btn active" data-system="All">All Systems</button>
                   ${ALL_SYSTEMS.map(
@@ -2645,18 +2705,18 @@
 
               <div class="of-cr-filter-row-split">
                 <div class="of-cr-filter-group">
-                  <div class="of-cr-filter-label">FILTER BY MANUFACTURER PALETTE</div>
+                  <div class="of-cr-filter-label">MANUFACTURER PALETTE</div>
                   <div class="of-cr-pill-row" id="of-cr-brand-pills">
-                    <button type="button" class="of-cr-filter-btn active" data-brand="All">All Brands (46)</button>
+                    <button type="button" class="of-cr-filter-btn active" data-brand="All">All (46)</button>
                     <button type="button" class="of-cr-filter-btn" data-brand="Romabio">Romabio (12)</button>
-                    <button type="button" class="of-cr-filter-btn" data-brand="Meoded">Meoded MC-Series (12)</button>
-                    <button type="button" class="of-cr-filter-btn" data-brand="Vasari">Vasari 2026 A-Series (10)</button>
-                    <button type="button" class="of-cr-filter-btn" data-brand="SureCrete">SureCrete SC Packs (12)</button>
+                    <button type="button" class="of-cr-filter-btn" data-brand="Meoded">Meoded (12)</button>
+                    <button type="button" class="of-cr-filter-btn" data-brand="Vasari">Vasari (10)</button>
+                    <button type="button" class="of-cr-filter-btn" data-brand="SureCrete">SureCrete (12)</button>
                   </div>
                 </div>
 
                 <div class="of-cr-filter-group of-cr-swatch-search-wrap">
-                  <label for="of-cr-swatch-search" class="of-cr-filter-label">FILTER SWATCHES</label>
+                  <label for="of-cr-swatch-search" class="of-cr-filter-label">SEARCH SWATCHES</label>
                   <input type="search" id="of-cr-swatch-search" class="of-cr-swatch-search" placeholder="Code, name, undertone..." />
                 </div>
               </div>
@@ -2664,7 +2724,9 @@
               <div id="of-cr-palette-banner" class="of-cr-palette-banner"></div>
             </div>
 
-            <div id="of-cr-swatch-grid" class="of-cr-swatch-grid"></div>
+            <div class="of-cr-swatch-scroll">
+              <div id="of-cr-swatch-grid" class="of-cr-swatch-grid"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -2672,6 +2734,8 @@
 
     uiRefs = {
       root: root,
+      toggleBtn: root.querySelector('#of-cr-toggle-btn'),
+      shell: root.querySelector('#of-cr-shell'),
       paintSearch: root.querySelector('#of-cr-paint-search'),
       paintSelect: root.querySelector('#of-cr-paint-select'),
       quickPaints: root.querySelector('#of-cr-quick-paints'),
@@ -2690,6 +2754,18 @@
 
     bindColorReferenceEvents();
     updateAllUI();
+    setStudioOpen(shouldOpenInitially);
+
+    // Auto-open studio when any #color-reference nav or hero button is clicked
+    document.querySelectorAll('a[href="#color-reference"], a[href="index.html#color-reference"]').forEach((link) => {
+      link.addEventListener('click', () => {
+        setStudioOpen(true);
+      });
+    });
+
+    uiRefs.toggleBtn.addEventListener('click', () => {
+      setStudioOpen(!pageState.isOpen);
+    });
   }
 
   function bindColorReferenceEvents() {
