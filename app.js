@@ -229,7 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       keywords: ['sample', 'samples', 'board', 'boards', 'color', 'colors', 'swatch', 'deposit', 'mockup'],
       reply:
-        'Before a deposit is secured, we discuss <strong>general aggregate, texture, and movement</strong> only. Custom project sample boards matched to your specific color are fabricated and presented <strong>only after a deposit is secured</strong>.'
+        'Before a <strong>50% deposit</strong> is secured, we discuss <strong>general aggregate, texture, and movement</strong> only. Custom project sample boards matched to your specific color are fabricated and presented <strong>only after the 50% deposit is secured</strong>.'
     },
     {
       keywords: ['tile', 'over tile', 'existing tile', 'demolition', 'demo', 'rip out'],
@@ -277,9 +277,9 @@ document.addEventListener('DOMContentLoaded', () => {
         'Clean routinely with a gentle <strong>pH-neutral soap</strong> and a soft microfiber cloth or mop. Avoid bleach, ammonia, and abrasive powders. In showers, a quick squeegee after use helps prevent hard-water mineral buildup.'
     },
     {
-      keywords: ['price', 'cost', 'estimate', 'quote', 'how much', 'designer', 'designers', 'rate', 'budget'],
+      keywords: ['price', 'cost', 'estimate', 'quote', 'how much', 'designer', 'designers', 'rate', 'budget', 'pay', 'payment'],
       reply:
-        'We partner primarily with <strong>interior designers</strong> (alongside builders and homeowners) and price by finish system, substrate condition, and scope rather than volume square-foot rates. Call or text <a href="tel:4058160750">405-816-0750</a> or email <a href="mailto:contact@organicfinishesllc.org">contact@organicfinishesllc.org</a> for an estimate.'
+        'We do not quote pricing through chat, as every surface depends on finish system, substrate condition, and scope. Projects require a <strong>50% deposit</strong> to reserve scheduling and begin custom color sample boards. Call or text <a href="tel:4058160750">405-816-0750</a> or email <a href="mailto:contact@organicfinishesllc.org">contact@organicfinishesllc.org</a> to discuss your project.'
     },
     {
       keywords: ['contact', 'call', 'text', 'phone', 'email', 'shawn', 'book', 'schedule', 'consultation', 'hello', 'hi'],
