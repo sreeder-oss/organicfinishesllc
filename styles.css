@@ -828,6 +828,24 @@ a {
   max-height: 540px;
 }
 
+.gallery-grid.gallery-grid-3col {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.gallery-grid.gallery-grid-3col .gallery-card,
+.gallery-grid.gallery-grid-3col .gallery-card:nth-child(5n + 1),
+.gallery-grid.gallery-grid-3col .gallery-card:nth-child(5n + 2) {
+  grid-column: span 1;
+}
+
+.gallery-grid.gallery-grid-3col .gallery-img-box,
+.gallery-grid.gallery-grid-3col .gallery-card:nth-child(5n + 1) .gallery-img-box {
+  aspect-ratio: 4 / 3;
+  max-height: 260px;
+  padding: 0.45rem;
+}
+
 .gallery-img-box img {
   width: 100%;
   height: 100%;
@@ -1790,6 +1808,7 @@ select.form-control {
   }
 
   .gallery-grid,
+  .gallery-grid.gallery-grid-3col,
   .pillars-grid,
   .blog-grid {
     grid-template-columns: minmax(0, 1fr);
