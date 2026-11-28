@@ -1801,454 +1801,64 @@
     });
   }
 
-  // Deterministic PRNG for procedural plaster textures
-  function hashSeed(str) {
-    let h = 2166136261 >>> 0;
-    for (let i = 0; i < str.length; i++) {
-      h ^= str.charCodeAt(i);
-      h = Math.imul(h, 16777619);
+  // --- Real Project Photography Reference per Finish System ---
+  const SYSTEM_PHOTO_MAP = {
+    'Venetian Marmorino': {
+      src: 'images/venetian-plaster-montana-estate.jpg',
+      darkSrc: 'images/range-hood-charcoal-venetian.jpg',
+      alt: 'Hand-troweled Venetian Marmorino plaster finish by Organic Finishes LLC',
+      caption: 'VENETIAN MARMORINO // REAL PROJECT PHOTOGRAPH'
+    },
+    'Limewash': {
+      src: 'images/limewash-texture.jpg',
+      alt: 'Chalky mineral slaked-lime wash wall finish by Organic Finishes LLC',
+      caption: 'LIMEWASH // REAL PROJECT PHOTOGRAPH'
+    },
+    'Microcement': {
+      src: 'images/microcement-countertop-macro.jpg',
+      darkSrc: 'images/flue-fireplace-troweled.jpg',
+      alt: 'Seamless 2–3 mm hand-troweled microcement surface by Organic Finishes LLC',
+      caption: 'MICROCEMENT // REAL PROJECT PHOTOGRAPH'
+    },
+    'Tadelakt': {
+      src: 'images/tadelakt-detail.jpg',
+      alt: 'Stone-burnished waterproof Moroccan Tadelakt wet room by Organic Finishes LLC',
+      caption: 'MOROCCAN TADELAKT // REAL PROJECT PHOTOGRAPH'
+    },
+    'Biolime': {
+      src: 'images/fireplace-and-builtin.jpg',
+      alt: 'Breathable mineral Biolime plaster fireplace surround and shelving by Organic Finishes LLC',
+      caption: 'BIOLIME PLASTER // REAL PROJECT PHOTOGRAPH'
+    },
+    'Roman Clay': {
+      src: 'images/plaster-detail-1.jpg',
+      alt: 'Velvety hand-troweled Roman Clay architectural finish by Organic Finishes LLC',
+      caption: 'ROMAN CLAY // REAL PROJECT PHOTOGRAPH'
+    },
+    'Travertino': {
+      src: 'images/fireplace-stepped-cantilever.jpg',
+      alt: 'Textured limestone Travertino plaster hearth by Organic Finishes LLC',
+      caption: 'TRAVERTINO LIMESTONE // REAL PROJECT PHOTOGRAPH'
     }
-    return h >>> 0;
-  }
+  };
 
-  function makeRng(seedStr) {
-    let s = hashSeed(seedStr) || 123456789;
-    return function () {
-      s = (s + 0x6d2b79f5) | 0;
-      let t = Math.imul(s ^ (s >>> 15), 1 | s);
-      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-    };
-  }
+  function updateReferencePhoto(imgEl, captionEl, state) {
+    const sw = state && state.selectedSwatch;
+    if (!imgEl || !sw) return;
+    const sys = state.activeSystem || (sw.visualizerSystems && sw.visualizerSystems[0]) || 'Venetian Marmorino';
+    const meta = SYSTEM_PHOTO_MAP[sys] || SYSTEM_PHOTO_MAP['Venetian Marmorino'];
+    const isDarkSwatch = typeof sw.lrvApprox === 'number' && sw.lrvApprox <= 20;
+    const targetSrc = isDarkSwatch && meta.darkSrc ? meta.darkSrc : meta.src;
 
-  // --- Procedural Mineral Surface Renderer (Sample Board + Architectural Vignettes) ---
-  function fillProceduralPlaster(ctx, x, y, w, h, hex, system, seedKey, lightAngle, isSealed) {
-    ctx.save();
-    ctx.beginPath();
-    ctx.rect(x, y, w, h);
-    ctx.clip();
-
-    const effHex = isSealed ? getSealedHex(hex, 0.875) : hex;
-    const base = hexToRgb(effHex);
-    const rng = makeRng(seedKey + '::' + system);
-
-    // Base fill
-    ctx.fillStyle = rgbToHex(base[0], base[1], base[2]);
-    ctx.fillRect(x, y, w, h);
-
-    // Soft directional grazing illumination across surface
-    const lx = x + w * (typeof lightAngle === 'number' ? lightAngle : 0.32);
-    const ly = y + h * 0.22;
-    const baseGrad = ctx.createRadialGradient(lx, ly, w * 0.05, x + w * 0.5, y + h * 0.6, w * 0.95);
-    const hi = shiftRgb(base, system === 'Limewash' ? 1.04 : 1.07);
-    const lo = shiftRgb(base, system === 'Limewash' ? 0.94 : 0.91);
-    baseGrad.addColorStop(0, rgbToHex(hi[0], hi[1], hi[2]));
-    baseGrad.addColorStop(1, rgbToHex(lo[0], lo[1], lo[2]));
-    ctx.fillStyle = baseGrad;
-    ctx.fillRect(x, y, w, h);
-
-    const isDark = base[0] * 0.299 + base[1] * 0.587 + base[2] * 0.114 < 110;
-    const lightDelta = isDark ? 24 : 15;
-    const darkDelta = isDark ? 20 : 16;
-
-    if (system === 'Limewash') {
-      // Chalky wide masonry block-brush cross-hatch & soft mineral clouds
-      for (let i = 0; i < 65; i++) {
-        const cx = x + rng() * w;
-        const cy = y + rng() * h;
-        const rw = 40 + rng() * 130;
-        const rh = 14 + rng() * 36;
-        const ang = (rng() - 0.5) * 0.85;
-        const bright = rng() > 0.48;
-        const d = bright ? lightDelta * 0.85 : -darkDelta * 0.75;
-        ctx.save();
-        ctx.translate(cx, cy);
-        ctx.rotate(ang);
-        const g = ctx.createRadialGradient(0, 0, 2, 0, 0, rw * 0.6);
-        g.addColorStop(
-          0,
-          'rgba(' +
-            Math.max(0, Math.min(255, base[0] + d)) + ',' +
-            Math.max(0, Math.min(255, base[1] + d)) + ',' +
-            Math.max(0, Math.min(255, base[2] + d)) + ',0.16)'
-        );
-        g.addColorStop(1, 'rgba(0,0,0,0)');
-        ctx.fillStyle = g;
-        ctx.fillRect(-rw, -rh, rw * 2, rh * 2);
-        // Subtle bristle streaks
-        ctx.strokeStyle =
-          'rgba(' +
-          Math.max(0, Math.min(255, base[0] + d * 1.2)) + ',' +
-          Math.max(0, Math.min(255, base[1] + d * 1.2)) + ',' +
-          Math.max(0, Math.min(255, base[2] + d * 1.2)) + ',0.08)';
-        ctx.lineWidth = 0.9;
-        for (let b = -4; b <= 4; b += 2) {
-          ctx.beginPath();
-          ctx.moveTo(-rw * 0.55, b * 2.2);
-          ctx.quadraticCurveTo(0, b * 2.2 + (rng() - 0.5) * 4, rw * 0.55, b * 2.2);
-          ctx.stroke();
-        }
-        ctx.restore();
-      }
-    } else if (system === 'Travertino') {
-      // Horizontal limestone striations & porous mineral pitting
-      for (let i = 0; i < 45; i++) {
-        const py = y + rng() * h;
-        const px = x + rng() * w;
-        const len = 35 + rng() * 160;
-        const thick = 1.5 + rng() * 5;
-        ctx.fillStyle =
-          'rgba(' +
-          Math.max(0, base[0] - darkDelta * 1.35) + ',' +
-          Math.max(0, base[1] - darkDelta * 1.35) + ',' +
-          Math.max(0, base[2] - darkDelta * 1.35) + ',' +
-          (0.11 + rng() * 0.14).toFixed(2) + ')';
-        ctx.fillRect(px - len / 2, py, len, thick);
-        // Bottom lip highlight on travertine pit
-        ctx.fillStyle =
-          'rgba(' +
-          Math.min(255, base[0] + lightDelta) + ',' +
-          Math.min(255, base[1] + lightDelta) + ',' +
-          Math.min(255, base[2] + lightDelta) + ',0.16)';
-        ctx.fillRect(px - len / 2, py + thick, len * 0.85, 1);
-      }
-      // Mineral pores
-      for (let p = 0; p < 240; p++) {
-        const px = x + rng() * w;
-        const py = y + rng() * h;
-        const pr = 0.6 + rng() * 1.8;
-        ctx.fillStyle = 'rgba(18, 22, 28, ' + (0.08 + rng() * 0.16).toFixed(2) + ')';
-        ctx.fillRect(px, py, pr * 2.2, pr * 0.9);
-      }
-    } else if (system === 'Microcement') {
-      // Sleek monolithic trowel sweeps + fine aggregate micro-pitting
-      for (let i = 0; i < 38; i++) {
-        const cx = x + rng() * w;
-        const cy = y + rng() * h;
-        const rad = 35 + rng() * 95;
-        const d = (rng() - 0.5) * (darkDelta * 1.4);
-        const g = ctx.createRadialGradient(cx, cy, 2, cx, cy, rad);
-        g.addColorStop(
-          0,
-          'rgba(' +
-            Math.max(0, Math.min(255, Math.round(base[0] + d))) + ',' +
-            Math.max(0, Math.min(255, Math.round(base[1] + d))) + ',' +
-            Math.max(0, Math.min(255, Math.round(base[2] + d))) + ',0.13)'
-        );
-        g.addColorStop(1, 'rgba(0,0,0,0)');
-        ctx.fillStyle = g;
-        ctx.beginPath();
-        ctx.arc(cx, cy, rad, 0, Math.PI * 2);
-        ctx.fill();
-      }
-      // Subtle steel-trowel arcs
-      for (let a = 0; a < 18; a++) {
-        ctx.strokeStyle = 'rgba(255,255,255,' + (isDark ? '0.04' : '0.07') + ')';
-        ctx.lineWidth = 1.1;
-        ctx.beginPath();
-        ctx.arc(x + rng() * w, y + rng() * h, 28 + rng() * 55, rng() * 2, rng() * 2 + 1.1);
-        ctx.stroke();
-      }
-      // Fine micro-pits
-      for (let p = 0; p < 150; p++) {
-        ctx.fillStyle = 'rgba(20,24,30,' + (0.06 + rng() * 0.11).toFixed(2) + ')';
-        ctx.fillRect(x + rng() * w, y + rng() * h, 1.2, 1.2);
-      }
-    } else {
-      // Venetian Marmorino, Tadelakt, Roman Clay, Biolime: layered trowel movement
-      const passCount = system === 'Venetian Marmorino' ? 52 : 42;
-      for (let i = 0; i < passCount; i++) {
-        const cx = x + rng() * w;
-        const cy = y + rng() * h;
-        const rad = 28 + rng() * 88;
-        const bright = rng() > 0.46;
-        const delta = bright ? lightDelta : -darkDelta;
-        const alpha = system === 'Roman Clay' ? 0.14 : 0.12;
-        const g = ctx.createRadialGradient(cx, cy, 1, cx, cy, rad);
-        g.addColorStop(
-          0,
-          'rgba(' +
-            Math.max(0, Math.min(255, base[0] + delta)) + ',' +
-            Math.max(0, Math.min(255, base[1] + delta)) + ',' +
-            Math.max(0, Math.min(255, base[2] + delta)) + ',' +
-            alpha + ')'
-        );
-        g.addColorStop(1, 'rgba(0,0,0,0)');
-        ctx.fillStyle = g;
-        ctx.beginPath();
-        ctx.arc(cx, cy, rad, 0, Math.PI * 2);
-        ctx.fill();
-      }
-
-      // Crushed-marble / knife-edge veins for Venetian Marmorino & Tadelakt
-      if (system === 'Venetian Marmorino' || system === 'Tadelakt') {
-        for (let v = 0; v < 22; v++) {
-          const sx = x + rng() * w;
-          const sy = y + rng() * h;
-          const ang = -0.55 + (rng() - 0.5) * 0.5;
-          const len = 35 + rng() * 95;
-          ctx.strokeStyle =
-            v % 2 === 0
-              ? 'rgba(255,255,255,' + (isDark ? '0.09' : '0.16') + ')'
-              : 'rgba(15,20,28,' + (isDark ? '0.16' : '0.07') + ')';
-          ctx.lineWidth = 0.8 + rng() * 1.4;
-          ctx.beginPath();
-          ctx.moveTo(sx, sy);
-          ctx.quadraticCurveTo(
-            sx + Math.cos(ang) * len * 0.5 + (rng() - 0.5) * 18,
-            sy + Math.sin(ang) * len * 0.5 + (rng() - 0.5) * 18,
-            sx + Math.cos(ang) * len,
-            sy + Math.sin(ang) * len
-          );
-          ctx.stroke();
-        }
-      }
-
-      // Specular burnish sheen band for Venetian Marmorino, Tadelakt, or Sealed surfaces
-      if (system === 'Venetian Marmorino' || system === 'Tadelakt' || isSealed) {
-        const sheenPos = typeof lightAngle === 'number' ? lightAngle : 0.35;
-        const bandX = x + w * sheenPos;
-        const sheenGrad = ctx.createLinearGradient(bandX - w * 0.28, y, bandX + w * 0.28, y + h * 0.85);
-        const peakAlpha = system === 'Venetian Marmorino' ? (isDark ? 0.18 : 0.24) : 0.13;
-        sheenGrad.addColorStop(0, 'rgba(255,255,255,0)');
-        sheenGrad.addColorStop(0.5, 'rgba(255,255,255,' + peakAlpha + ')');
-        sheenGrad.addColorStop(1, 'rgba(255,255,255,0)');
-        ctx.fillStyle = sheenGrad;
-        ctx.fillRect(x, y, w, h);
-      }
-
-      // Fine mineral sand grain for Biolime
-      if (system === 'Biolime') {
-        for (let gIdx = 0; gIdx < 200; gIdx++) {
-          ctx.fillStyle =
-            gIdx % 2 === 0 ? 'rgba(255,255,255,0.08)' : 'rgba(26,35,50,0.07)';
-          ctx.fillRect(x + rng() * w, y + rng() * h, 1.3, 1.3);
-        }
-      }
+    if (imgEl.getAttribute('src') !== targetSrc) {
+      imgEl.src = targetSrc;
     }
-
-    ctx.restore();
-  }
-
-  function renderSpecimenCanvas(canvas, state) {
-    const sw = state && (state.selectedSwatch || state.swatch);
-    if (!canvas || !sw) return;
-    const ctx = canvas.getContext('2d');
-    const w = canvas.width;
-    const h = canvas.height;
-    const sys = state.activeSystem || sw.visualizerSystems[0] || 'Venetian Marmorino';
-    const view = state.viewMode || 'board';
-    const showSplit = Boolean(state.showSealerSplit);
-    const lightPos = typeof state.lightPos === 'number' ? state.lightPos : 0.35;
-
-    ctx.clearRect(0, 0, w, h);
-
-    if (view === 'board') {
-      if (showSplit) {
-        const splitX = Math.round(w * 0.6);
-        fillProceduralPlaster(ctx, 0, 0, splitX, h, sw.hex, sys, sw.id, lightPos, false);
-        fillProceduralPlaster(ctx, splitX, 0, w - splitX, h, sw.hex, sys, sw.id, lightPos, true);
-
-        // Gold divider line (#d9a441)
-        ctx.strokeStyle = '#d9a441';
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        ctx.moveTo(splitX, 0);
-        ctx.lineTo(splitX, h);
-        ctx.stroke();
-
-        // Corner plates
-        drawCanvasBadge(ctx, 14, h - 38, 'UNSEALED DRY MINERAL · ' + sw.hex.toUpperCase(), '#1a2332', '#e8e3d6');
-        drawCanvasBadge(
-          ctx,
-          splitX + 12,
-          h - 38,
-          'SEALED (~12% DEEPER) · ' + getSealedHex(sw.hex).toUpperCase(),
-          '#1a2332',
-          '#d9a441'
-        );
-      } else {
-        fillProceduralPlaster(ctx, 0, 0, w, h, sw.hex, sys, sw.id, lightPos, false);
-        drawCanvasBadge(
-          ctx,
-          14,
-          h - 38,
-          sw.code + ' · ' + sw.name.toUpperCase() + ' // ' + sys.toUpperCase(),
-          '#1a2332',
-          '#e8e3d6'
-        );
-      }
-      // Subtle 1px inner specimen bevel
-      ctx.strokeStyle = 'rgba(26,35,50,0.22)';
-      ctx.lineWidth = 2;
-      ctx.strokeRect(1, 1, w - 2, h - 2);
-      return;
-    }
-
-    if (view === 'hood') {
-      // Gallery backdrop wall in soft limestone
-      ctx.fillStyle = '#EAE5D9';
-      ctx.fillRect(0, 0, w, h);
-      // Lower backsplash stone slab
-      ctx.fillStyle = '#D9D2C3';
-      ctx.fillRect(0, h * 0.74, w, h * 0.26);
-      ctx.strokeStyle = 'rgba(26,35,50,0.18)';
-      ctx.beginPath();
-      ctx.moveTo(0, h * 0.74);
-      ctx.lineTo(w, h * 0.74);
-      ctx.stroke();
-
-      // Cast wall shadow
-      ctx.fillStyle = 'rgba(17,24,35,0.14)';
-      ctx.beginPath();
-      ctx.moveTo(w * 0.69, 20);
-      ctx.lineTo(w * 0.81, h * 0.68);
-      ctx.lineTo(w * 0.75, h * 0.68);
-      ctx.closePath();
-      ctx.fill();
-
-      // Left return plane of tapered range hood (slightly shaded)
-      ctx.save();
-      ctx.beginPath();
-      ctx.moveTo(w * 0.26, 0);
-      ctx.lineTo(w * 0.34, 0);
-      ctx.lineTo(w * 0.31, h * 0.66);
-      ctx.lineTo(w * 0.20, h * 0.63);
-      ctx.closePath();
-      ctx.clip();
-      fillProceduralPlaster(
-        ctx,
-        w * 0.18,
-        0,
-        w * 0.2,
-        h * 0.68,
-        getSealedHex(sw.hex, showSplit ? 0.8 : 0.9),
-        sys,
-        sw.id + '-left',
-        lightPos,
-        showSplit
-      );
-      ctx.restore();
-
-      // Front tapered face of range hood
-      ctx.save();
-      ctx.beginPath();
-      ctx.moveTo(w * 0.34, 0);
-      ctx.lineTo(w * 0.70, 0);
-      ctx.lineTo(w * 0.77, h * 0.66);
-      ctx.lineTo(w * 0.31, h * 0.66);
-      ctx.closePath();
-      ctx.clip();
-      fillProceduralPlaster(ctx, w * 0.30, 0, w * 0.50, h * 0.68, sw.hex, sys, sw.id, lightPos, showSplit);
-      ctx.restore();
-
-      // Architectural apron band at bottom of hood
-      ctx.save();
-      ctx.beginPath();
-      ctx.rect(w * 0.305, h * 0.59, w * 0.468, h * 0.075);
-      ctx.clip();
-      fillProceduralPlaster(ctx, w * 0.30, h * 0.58, w * 0.48, h * 0.09, sw.hex, sys, sw.id + '-apron', lightPos + 0.08, showSplit);
-      ctx.restore();
-
-      ctx.strokeStyle = 'rgba(26,35,50,0.28)';
-      ctx.lineWidth = 1.2;
-      ctx.beginPath();
-      ctx.moveTo(w * 0.308, h * 0.59);
-      ctx.lineTo(w * 0.768, h * 0.59);
-      ctx.stroke();
-
-      drawCanvasBadge(ctx, 14, h - 38, 'TAPERED RANGE HOOD STUDY · ' + sw.code + ' (' + sys.toUpperCase() + ')', '#1a2332', '#e8e3d6');
-      return;
-    }
-
-    if (view === 'fireplace') {
-      // Surrounding warm gallery room
-      ctx.fillStyle = '#E4DECFE0';
-      ctx.fillRect(0, 0, w, h);
-      ctx.fillStyle = '#E5DFD2';
-      ctx.fillRect(0, 0, w, h * 0.86);
-      // White oak floor
-      ctx.fillStyle = '#C6B091';
-      ctx.fillRect(0, h * 0.86, w, h * 0.14);
-
-      // Left return depth of monolithic chimney breast
-      ctx.save();
-      ctx.beginPath();
-      ctx.rect(w * 0.17, 0, w * 0.06, h * 0.86);
-      ctx.clip();
-      fillProceduralPlaster(ctx, w * 0.16, 0, w * 0.08, h * 0.86, getSealedHex(sw.hex, 0.9), sys, sw.id + '-fpleft', lightPos, showSplit);
-      ctx.restore();
-
-      // Main floor-to-ceiling hearth face
-      ctx.save();
-      ctx.beginPath();
-      ctx.rect(w * 0.23, 0, w * 0.56, h * 0.86);
-      ctx.clip();
-      fillProceduralPlaster(ctx, w * 0.23, 0, w * 0.56, h * 0.86, sw.hex, sys, sw.id, lightPos, showSplit);
-      ctx.restore();
-
-      // Recessed firebox opening
-      ctx.fillStyle = '#181E27';
-      ctx.fillRect(w * 0.37, h * 0.45, w * 0.28, h * 0.41);
-      // Beveled plaster return inside firebox
-      ctx.fillStyle = 'rgba(0,0,0,0.22)';
-      ctx.fillRect(w * 0.37, h * 0.45, w * 0.28, 8);
-
-      drawCanvasBadge(ctx, 14, h - 38, 'MONOLITHIC HEARTH STUDY · ' + sw.code + ' (' + sys.toUpperCase() + ')', '#1a2332', '#e8e3d6');
-      return;
-    }
-
-    if (view === 'shower') {
-      // Left wet-room wall
-      fillProceduralPlaster(ctx, 0, 0, w * 0.56, h * 0.82, sw.hex, sys, sw.id, lightPos, true);
-      // Right return wet-room wall (slightly deeper grazing angle)
-      fillProceduralPlaster(ctx, w * 0.56, 0, w * 0.44, h * 0.82, getSealedHex(sw.hex, 0.93), sys, sw.id + '-rt', lightPos * 0.7, true);
-      // Curbless seamless microcement/plaster floor
-      fillProceduralPlaster(ctx, 0, h * 0.82, w, h * 0.18, getSealedHex(sw.hex, 0.89), 'Microcement', sw.id + '-flr', lightPos, true);
-
-      // Recessed shower niche
-      ctx.save();
-      ctx.strokeStyle = 'rgba(26,35,50,0.28)';
-      ctx.lineWidth = 1.5;
-      ctx.strokeRect(w * 0.16, h * 0.28, w * 0.24, h * 0.22);
-      ctx.fillStyle = 'rgba(17,24,35,0.12)';
-      ctx.fillRect(w * 0.16, h * 0.28, w * 0.24, 7);
-      ctx.restore();
-
-      // Frameless architectural glass partition highlight
-      ctx.strokeStyle = 'rgba(255,255,255,0.55)';
-      ctx.lineWidth = 2;
-      ctx.beginPath();
-      ctx.moveTo(w * 0.74, 0);
-      ctx.lineTo(w * 0.74, h * 0.92);
-      ctx.stroke();
-
-      drawCanvasBadge(
-        ctx,
-        14,
-        h - 38,
-        'CURBLESS WET-AREA STUDY (SEALED TONE) · ' + sw.code,
-        '#1a2332',
-        '#d9a441'
-      );
+    imgEl.alt = meta.alt;
+    if (captionEl) {
+      captionEl.textContent = meta.caption + ' · ' + sw.code + ' ' + sw.name.toUpperCase();
     }
   }
 
-  function drawCanvasBadge(ctx, x, y, text, bg, fg) {
-    ctx.save();
-    ctx.font = '600 10.5px "IBM Plex Mono", monospace';
-    const padX = 10;
-    const metrics = ctx.measureText(text);
-    const bw = Math.min(metrics.width + padX * 2, ctx.canvas.width - x - 10);
-    ctx.fillStyle = 'rgba(26, 35, 50, 0.9)';
-    ctx.fillRect(x, y, bw, 24);
-    ctx.strokeStyle = fg === '#d9a441' ? '#d9a441' : 'rgba(73, 163, 61, 0.75)';
-    ctx.lineWidth = 1;
-    ctx.strokeRect(x, y, bw, 24);
-    ctx.fillStyle = fg || '#e8e3d6';
-    ctx.fillText(text, x + padX, y + 15.5, bw - padX * 2);
-    ctx.restore();
-  }
 
   // --- Clara Chat Color Intelligence & Handoff ---
   function answerClaraColorQuery(rawInput) {
@@ -2521,9 +2131,6 @@
     uiRefs.toggleBtn.textContent = pageState.isOpen
       ? 'Close Color Studio [−]'
       : 'Open Color & Finish Studio [+]';
-    if (pageState.isOpen) {
-      renderSpecimenCanvas(uiRefs.canvas, pageState);
-    }
   }
 
   function mountColorReference() {
@@ -2594,7 +2201,7 @@
               .join('')}
           </div>
           <div class="of-cr-compact-meta">
-            <strong>46 Factory Swatches</strong> · Romabio, Meoded, Vasari &amp; SureCrete · <strong>32 Designer Paint Cross-References</strong> · Sealer Darkening &amp; Surface Previews
+            <strong>46 Factory Swatches</strong> · Romabio, Meoded, Vasari &amp; SureCrete · <strong>32 Designer Paint Cross-References</strong> · Real Project Finish Photography
           </div>
         </div>
         <button
@@ -2661,29 +2268,20 @@
           <div id="of-cr-matcher-results" class="of-cr-matcher-results"></div>
         </div>
 
-        <!-- 2. Main Interactive Studio Specimen Board + 46-Swatch Catalog -->
+        <!-- 2. Main Interactive Studio Real-Photo Dossier + 46-Swatch Catalog -->
         <div class="of-cr-workspace">
-          <!-- Left Specimen Visualizer -->
-          <aside class="of-cr-inspector" aria-label="Interactive Mineral Specimen Inspector">
-            <div class="of-cr-view-tabs" role="tablist" aria-label="Surface Visualization Context">
-              <button type="button" class="of-cr-view-tab active" data-view="board">Sample Board</button>
-              <button type="button" class="of-cr-view-tab" data-view="hood">Range Hood</button>
-              <button type="button" class="of-cr-view-tab" data-view="fireplace">Fireplace</button>
-              <button type="button" class="of-cr-view-tab" data-view="shower">Wet Room</button>
-            </div>
-
-            <div class="of-cr-canvas-wrap">
-              <canvas id="of-cr-canvas" width="560" height="295"></canvas>
-            </div>
-
-            <div class="of-cr-canvas-controls">
-              <label class="of-cr-toggle-label">
-                <input type="checkbox" id="of-cr-sealer-toggle" checked />
-                <span>Show ~12% Sealer Darkening Split (HydroWax / PlasterGuard / NanoCoat)</span>
-              </label>
-              <div class="of-cr-slider-row">
-                <label for="of-cr-light-slider">Grazing Light Angle</label>
-                <input type="range" id="of-cr-light-slider" min="8" max="92" value="34" />
+          <!-- Left Static Real-Photo Display & Swatch Dossier -->
+          <aside class="of-cr-inspector" aria-label="Selected Mineral Swatch & Real Project Photo">
+            <div class="of-cr-photo-frame">
+              <img
+                id="of-cr-ref-photo"
+                class="of-cr-ref-photo"
+                src="images/venetian-plaster-montana-estate.jpg"
+                alt="Hand-troweled Venetian Marmorino plaster finish by Organic Finishes LLC"
+                loading="lazy"
+              />
+              <div id="of-cr-photo-caption" class="of-cr-photo-caption">
+                VENETIAN MARMORINO // REAL PROJECT PHOTOGRAPH
               </div>
             </div>
 
@@ -2740,10 +2338,8 @@
       paintSelect: root.querySelector('#of-cr-paint-select'),
       quickPaints: root.querySelector('#of-cr-quick-paints'),
       matcherResults: root.querySelector('#of-cr-matcher-results'),
-      viewTabs: root.querySelectorAll('.of-cr-view-tab'),
-      canvas: root.querySelector('#of-cr-canvas'),
-      sealerToggle: root.querySelector('#of-cr-sealer-toggle'),
-      lightSlider: root.querySelector('#of-cr-light-slider'),
+      refPhoto: root.querySelector('#of-cr-ref-photo'),
+      photoCaption: root.querySelector('#of-cr-photo-caption'),
       dossier: root.querySelector('#of-cr-dossier'),
       systemPills: root.querySelectorAll('#of-cr-system-pills .of-cr-filter-btn'),
       brandPills: root.querySelectorAll('#of-cr-brand-pills .of-cr-filter-btn'),
@@ -2816,37 +2412,8 @@
           }
           updateInspectorUI();
           highlightSelectedCard();
-          uiRefs.canvas.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          uiRefs.refPhoto.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
-      }
-    });
-
-    uiRefs.viewTabs.forEach((tab) => {
-      tab.addEventListener('click', () => {
-        pageState.viewMode = tab.getAttribute('data-view') || 'board';
-        uiRefs.viewTabs.forEach((t) => t.classList.toggle('active', t === tab));
-        renderSpecimenCanvas(uiRefs.canvas, pageState);
-      });
-    });
-
-    uiRefs.sealerToggle.addEventListener('change', () => {
-      pageState.showSealerSplit = uiRefs.sealerToggle.checked;
-      renderSpecimenCanvas(uiRefs.canvas, pageState);
-    });
-
-    uiRefs.lightSlider.addEventListener('input', () => {
-      pageState.lightPos = Number(uiRefs.lightSlider.value) / 100;
-      renderSpecimenCanvas(uiRefs.canvas, pageState);
-    });
-
-    // Interactive mouse raking-light sweep on canvas
-    uiRefs.canvas.addEventListener('mousemove', (e) => {
-      const rect = uiRefs.canvas.getBoundingClientRect();
-      if (rect.width > 0) {
-        const ratio = Math.max(0.08, Math.min(0.92, (e.clientX - rect.left) / rect.width));
-        pageState.lightPos = ratio;
-        uiRefs.lightSlider.value = String(Math.round(ratio * 100));
-        renderSpecimenCanvas(uiRefs.canvas, pageState);
       }
     });
 
@@ -3054,7 +2621,7 @@
     const sealedHex = getSealedHex(sw.hex);
     const nearPaints = findClosestDesignerPaints(sw, 2);
 
-    renderSpecimenCanvas(uiRefs.canvas, pageState);
+    updateReferencePhoto(uiRefs.refPhoto, uiRefs.photoCaption, pageState);
 
     const baseBadge =
       sw.tintBaseLimit === 'light-to-medium'
@@ -3076,10 +2643,14 @@
           <span class="of-cr-spec-v">${sw.undertone}</span>
         </div>
         <div class="of-cr-spec-cell">
-          <span class="of-cr-spec-k">DRY vs. SEALED TONE</span>
+          <span class="of-cr-spec-k">DRY vs. SEALED TONE (~10–15% DEEPER)</span>
+          <div class="of-cr-tone-compare-bar" aria-label="Dry versus sealed mineral color comparison">
+            <span class="of-cr-tone-half" style="background:${sw.hex};" title="Dry / Unsealed: ${sw.hex.toUpperCase()}"></span>
+            <span class="of-cr-tone-half" style="background:${sealedHex};" title="Sealed (~10–15% deeper): ${sealedHex}"></span>
+          </div>
           <span class="of-cr-spec-v">
             <span class="of-cr-inline-dot" style="background:${sw.hex};"></span>${sw.hex.toUpperCase()} →
-            <span class="of-cr-inline-dot" style="background:${sealedHex};"></span>${sealedHex} (~10–15% deeper)
+            <span class="of-cr-inline-dot" style="background:${sealedHex};"></span>${sealedHex}
           </span>
         </div>
       </div>
@@ -3091,7 +2662,7 @@
       </p>
 
       <div class="of-cr-compat-wrap">
-        <div class="of-cr-spec-k" style="margin-bottom: 0.35rem;">ACTIVE TEXTURE SIMULATION (CLICK SYSTEM TO PREVIEW):</div>
+        <div class="of-cr-spec-k" style="margin-bottom: 0.35rem;">COMPATIBLE FINISH SYSTEMS (CLICK FOR PROJECT PHOTO):</div>
         <div class="of-cr-compat-pills">
           ${sw.visualizerSystems
             .map(
@@ -3132,7 +2703,7 @@
       uiRefs.paletteBanner.style.display = 'block';
     } else {
       uiRefs.paletteBanner.innerHTML =
-        '<strong>Showing Factory-Formulated Mineral Palettes:</strong> Romabio Slaked-Lime Core · Meoded MC-Series · Vasari 2026 A-Series · SureCrete SC Oxide Color Packs. Click any swatch to render its live troweled/brushed texture &amp; sealer shift.';
+        '<strong>Showing Factory-Formulated Mineral Palettes:</strong> Romabio Slaked-Lime Core · Meoded MC-Series · Vasari 2026 A-Series · SureCrete SC Oxide Color Packs. Click any swatch to inspect its undertone, LRV, and dry-vs.-sealed tone.';
       uiRefs.paletteBanner.style.display = 'block';
     }
 
